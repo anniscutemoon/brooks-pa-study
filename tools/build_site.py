@@ -71,6 +71,30 @@ def md_to_html(md):
         i += 1
     return "\n".join(out)
 
+def ex_form(md, page_id):
+    """为习题页生成答题区：每题一个输入框 + 保存草稿(localStorage) + 一键复制答案。"""
+    qs = re.findall(r"\*\*(第[^*]{0,40}?题[^*]{0,40}?)\*\*", md)
+    if not qs:
+        return ""
+    areas = []
+    for i, q in enumerate(qs):
+        areas.append('<div class="qa"><div class="qt">%s</div><textarea id="ta%d" placeholder="在这里写答案。写完点「复制全部答案」，粘贴到对话里发给教练批改"></textarea></div>' % (esc(q), i))
+    titles_js = json.dumps(qs, ensure_ascii=False)
+    return ('<h2>作答区</h2>' + "".join(areas) +
+            '<div class="qbtns"><button onclick="saveDraft()">保存草稿</button>'
+            '<button onclick="copyAll()">复制全部答案</button><span id="saved"></span></div>'
+            '<div class="foot">草稿只存在你自己浏览器里；批改由教练在对话中进行，本页不含参考答案。</div>'
+            '<script>var PID=%s,TITLES=%s,N=TITLES.length;' % (json.dumps(page_id), titles_js) +
+            'function saveDraft(){for(var i=0;i<N;i++){localStorage.setItem(PID+":ta"+i,document.getElementById("ta"+i).value)}'
+            'document.getElementById("saved").textContent="草稿已存 "+new Date().toLocaleTimeString()}'
+            'function copyAll(){var out=[];for(var i=0;i<N;i++){out.push("【"+TITLES[i]+"】\\n"+document.getElementById("ta"+i).value)}'
+            'var txt=out.join("\\n\\n");'
+            'function ok(){document.getElementById("saved").textContent="已复制，去对话里粘贴发给教练"}'
+            'if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,function(){fallback()})}else{fallback()}'
+            'function fallback(){var t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand("copy");ok()}catch(e){document.getElementById("saved").textContent="复制失败，请手动全选答案框内容"}document.body.removeChild(t)}}'
+            'window.onload=function(){for(var i=0;i<N;i++){var v=localStorage.getItem(PID+":ta"+i);if(v){document.getElementById("ta"+i).value=v}}};'
+            '</script>')
+
 PAGE = """<!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>__TITLE__</title>
 <style>
@@ -91,6 +115,14 @@ blockquote{background:#20262e;border-left:3px solid #f59e0b;border-radius:0 6px 
 .tb{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px}
 .tb th{background:#262a30;color:#9ecbff;text-align:left;padding:7px 10px;border:1px solid #33373e}
 .tb td{padding:7px 10px;border:1px solid #33373e;color:#c4ccd6}
+.qa{margin:14px 0}
+.qt{color:#9ecbff;font-weight:600;margin-bottom:6px;font-size:14px}
+.qa textarea{width:100%;min-height:110px;background:#1f2226;color:#d7dae0;border:1px solid #3d434c;border-radius:8px;padding:10px;font:14px/1.6 "PingFang SC","Microsoft YaHei",sans-serif;box-sizing:border-box}
+.qa textarea:focus{border-color:#4fc1ff;outline:none}
+.qbtns{display:flex;gap:12px;align-items:center;margin:10px 0}
+.qbtns button{background:#20262e;border:1px solid #4fc1ff;color:#4fc1ff;border-radius:7px;padding:8px 18px;font-size:14px;cursor:pointer}
+.qbtns button:hover{background:#26303a}
+#saved{color:#8b929e;font-size:12.5px}
 .mats{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
 .mats a{display:inline-block;background:#20262e;border:1px solid #4fc1ff;color:#4fc1ff;border-radius:7px;padding:8px 16px;text-decoration:none;font-size:14px}
 .mats a:hover{background:#26303a}
@@ -169,6 +201,8 @@ def main():
                 nav = '<a href="../index.html">首页</a> <span class="pos">%s / %s</span> %s %s <a href="%s">思维导图</a>' % (
                     esc(bname), esc(ch), prev_l, next_l, rel(2, os.path.join("books", book, "mindmap", book + "-map.html")))
                 body = md_to_html(md)
+                if kind == "ex":
+                    body += ex_form(md, book + "/" + title)
                 if mats:
                     body = '<div class="mats">%s</div>' % "".join(mats) + body
                 body += '<div class="foot">本页由仓库内容生成 · 原书引用以 PDF 页锚点为准 · 学习笔记非原书内容</div>'
