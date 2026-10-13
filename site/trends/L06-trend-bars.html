@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>L06-trend-bars</title>
+<style>
+body{margin:0;background:#1b1d21;color:#d7dae0;font:14.5px/1.75 "PingFang SC","Microsoft YaHei",sans-serif}
+.nav{background:#23262b;border-bottom:1px solid #33373e;padding:10px 22px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.nav a{color:#4fc1ff;text-decoration:none;font-size:13.5px}
+.nav a:hover{text-decoration:underline}
+.nav .pos{color:#8b929e;font-size:13px}
+.wrap{max-width:860px;margin:0 auto;padding:20px 26px 60px}
+h1{font-size:24px;color:#e8eaed;border-bottom:2px solid #4fc1ff;padding-bottom:8px;margin:14px 0}
+h2{font-size:19px;color:#9ecbff;margin:26px 0 8px}
+h3{font-size:16.5px;color:#c4ccd6;margin:20px 0 6px}
+h4{font-size:15px;color:#c4ccd6}
+p{margin:8px 0}
+ul,ol{margin:6px 0;padding-left:24px}
+li{margin:4px 0}
+blockquote{background:#20262e;border-left:3px solid #f59e0b;border-radius:0 6px 6px 0;padding:10px 14px;margin:10px 0;color:#dbe2ea}
+.tb{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px}
+.tb th{background:#262a30;color:#9ecbff;text-align:left;padding:7px 10px;border:1px solid #33373e}
+.tb td{padding:7px 10px;border:1px solid #33373e;color:#c4ccd6}
+.qa{margin:14px 0}
+.qt{color:#9ecbff;font-weight:600;margin-bottom:6px;font-size:14px}
+.qa textarea{width:100%;min-height:110px;background:#1f2226;color:#d7dae0;border:1px solid #3d434c;border-radius:8px;padding:10px;font:14px/1.6 "PingFang SC","Microsoft YaHei",sans-serif;box-sizing:border-box}
+.qa textarea:focus{border-color:#4fc1ff;outline:none}
+.qbtns{display:flex;gap:12px;align-items:center;margin:10px 0}
+.qbtns button{background:#20262e;border:1px solid #4fc1ff;color:#4fc1ff;border-radius:7px;padding:8px 18px;font-size:14px;cursor:pointer}
+.qbtns button:hover{background:#26303a}
+#saved{color:#8b929e;font-size:12.5px}
+.mats{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
+.mats a{display:inline-block;background:#20262e;border:1px solid #4fc1ff;color:#4fc1ff;border-radius:7px;padding:8px 16px;text-decoration:none;font-size:14px}
+.mats a:hover{background:#26303a}
+.foot{margin-top:36px;padding-top:12px;border-top:1px solid #33373e;color:#7c8590;font-size:12.5px}
+.card{display:block;background:#23262b;border:1px solid #33373e;border-left:4px solid #4fc1ff;border-radius:8px;padding:12px 16px;margin:10px 0;text-decoration:none}
+.card:hover{border-color:#4fc1ff}
+.card .t{color:#e8eaed;font-weight:600;font-size:15.5px}
+.card .s{color:#8b929e;font-size:12.5px;margin-top:3px}
+.tag{float:right;font-size:12px;color:#f59e0b}
+</style></head><body>
+<div class="nav"><a href="../index.html">首页</a> <span class="pos">高级趋势技术分析 / ch02-trend-bars</span>  <a href="EX-L06.html">下一页 →</a> <a href="../../books/trends/mindmap/trends-map.html">思维导图</a></div>
+<div class="wrap"><div class="mats"><a href="../../books/trends/chapters/ch02-trend-bars/lessons/L06-climax.html">打开图解/动画：L06-climax</a><a href="EX-L06.html">做随堂检查：EX-L06</a></div><h1>L06 · 趋势K线、十字星K线与高潮（第 2 章）</h1>
+<h2>定位</h2>
+<ul><li>原书：《高级趋势技术分析》第一篇 价格行为 · 第 2 章（印刷页 61-67 / PDF 第 68-81 页），导图节点 T02。</li><li>类型：原书内容讲解。</li></ul>
+<h2>学习目标（本讲学完你能做到）</h2>
+<ol><li>判定任意一根K线是趋势K线还是十字星，并接受"近似足矣"（标准是相对的）。</li><li>说出趋势K线的四重身份（急速 / 突破 / 缺口 / 真空或高潮的一部分）。</li><li>说清"高潮 ≠ 反转"：高潮结束于第一根停止K线；反转 = 高潮 + 随之而来的反向强趋势K线。</li><li>从K线队列读出买压/卖压在集聚，并解释区间如何由此形成。</li><li>说出为什么不该在过小时间级别上和计算机拼速度。</li></ol>
+<h2>作者观点（原书）</h2>
+<h3>K线只有两类（P68-69, P72-74）</h3>
+<ul><li>市场只有两种状态：有趋势或无趋势（无趋势 = 某种交易区间）。单根K线同理：要么是趋势K线，要么是交易区间K线（无趋势K线）。所有无趋势K线统称"十字星"：实体很小或没有，多空势均力敌。</li><li>十字星的标准是<b style="color:#e8eaed">相对的、主观的</b>：Emini 5 分钟图上实体 1-2 个 tick 算十字星；谷歌日线上实体 100 美分"仍具有与完美十字星相当的内涵"。<b style="color:#e8eaed">在交易中，我们只追求近似，不求完美</b>（P69）。</li><li>把实体小的K线细分成上吊线、锤子线、孕育线意义不大：重要的是判断市场是否在试图形成趋势、趋势强度如何。"你是靠下单交易赚钱，而不是靠这些五花八门、毫无意义的名字"（P69）。</li><li>趋势K线最低要求：收盘高于开盘（阳线）。较长实体通常意味较强动能；但行情持续很久之后或突破时，<b style="color:#e8eaed">实体过长可能是高潮耗尽的征兆</b>，此时不应参与、等进一步展开。连续多根强趋势K线是趋势健康的表现（P69、P72）。</li></ul>
+<h3>每根K线里，买卖双方永远都在（P68）</h3>
+<ul><li>在每根多头趋势K线的最高点：有逢高买进的多头、等回调再买多头的、逢高卖出锁利的多头、认为强弩之末而做空的空头……把大阳线简单看成"看涨"，就忽略了另一半市场玩家。</li></ul>
+<h3>趋势K线的四重身份（P69）</h3>
+<p>每一根趋势K线同时是：① 急速运动 ② 突破 ③ 缺口（所有突破在作用上等同于缺口，所有趋势K线也是如此——第二本书展开）④ 真空或高潮的一部分或全部。</p>
+<h3>高潮与反转（P69-71, P77, P79-80）</h3>
+<ul><li><b style="color:#e8eaed">真空效应</b>：买入高潮后的急升，可能是因为强势空头选择场外观望、强势多头暂缓获利平仓——直到价格来到他们都等着卖出的区域。若急升后没反转、迎来进一步买盘，说明不是真空而是强势多头真在买（P70）。</li><li><b style="color:#e8eaed">高潮 ≠ 反转</b>：任何趋势K线都是高潮或高潮的一部分；<b style="color:#e8eaed">高潮结束于第一根停止K线</b>（长上影小阳、内包K线、十字星或反向趋势K线）。买入高潮是上涨；高潮反转顶部是上涨之后转跌——反转需要<b style="color:#e8eaed">买入高潮 + 随之而来的空头突破</b>（一根强空头趋势K线），二者不一定相邻，但缺一不可（P71）。</li><li>顶部所有反转本质上都是高潮反转（可能在更小时间级别上才看得出完美急涨急跌）；多根K线组成的高潮顶，在更高时间级别上往往对应一根单独的反转K线（P72）。</li><li><b style="color:#e8eaed">耗竭性卖出高潮</b>：下跌趋势运行 30 根以上无大回撤后，一根长空头趋势K线往往代表卖出真空和耗竭——强势多头与强势空头都等着它出现然后一起买（空头回补 + 多头新建），预期至少两波上涨、10 根以上，可能小幅探破均线（P77、P79-80，图 2.5）。</li></ul>
+<h3>买压与卖压（P72-73）</h3>
+<ul><li>交易区间或下跌趋势中，多头趋势K线数量变多、实体变长 = <b style="color:#e8eaed">买压</b>集聚；上升趋势或区间中长空头趋势K线反复出现 = <b style="color:#e8eaed">卖压</b>集聚。强势多头与强势空头都是机构，其行为的累积效应决定方向。</li><li>买压信号：下影线、向下摆动底部的双K线反转或多头反转K线、大阳线增多。强势多头越跌越买；强势空头在过低位置不愿做空、只想逢高卖。两方都这样了会发生什么？<b style="color:#e8eaed">市场进入交易区间</b>——强势多头在区间底买、强势空头在区间顶卖；而弱势交易者正相反：低点止损卖出、高点追进买入（P73）。</li><li>对市场方向有 60% 确定性的情况很少见，且可能迅速降为 50% 甚至反向 60%（P74）。</li></ul>
+<h3>十字星的本质与例外（P74, P76）</h3>
+<ul><li>十字星内部（更小级别）要么先跌后涨（卖出高潮）、要么先涨后跌（买入高潮）；所有十字星都包含双向交易，因此应视为<b style="color:#e8eaed">单K线交易区间</b>。</li><li>例外：<b style="color:#e8eaed">趋势性连续十字星</b>——连续多根十字星的收盘、高点、低点逐根抬高 = 买压集聚，趋势依然成立（图 2.3：4 根连续上行十字星 = 更高时间级别上的一根多头反转K线）。</li></ul>
+<h3>速度警告（P71）</h3>
+<ul><li>大阴线收在最低点后接内包小阳线然后反转创新高，在更小级别上往往是明确反转形态（如"三连推"），但形态形成太快，人脑来不及准确分析。所有形态都是计算机算法造成的，电脑有巨大的速度优势——<b style="color:#e8eaed">不要和电脑拼速度，选有足够时间处理信息的时间级别（如 5 分钟图）来交易</b>。</li></ul>
+<h2>教学解释（我的，不是作者的）</h2>
+<ul><li>"高潮结束于停止K线"类比：冲刺跑。连续三根大阳是全力冲刺，长上影/十字星是运动员突然踉跄了一下——冲刺（高潮）在这一踉跄就结束了。但踉跄不等于掉头往回跑（反转）；掉头需要他真的开始往回跑（一根反向强趋势K线）。局限：踉跄后他可能缓过来继续冲（趋势恢复），所以停止K线后两手准备。</li><li>"真空效应"类比：拍卖会冷场。价格一路抬，不是买的人太多，而是<b style="color:#e8eaed">该卖的人全都把手揣在兜里等更高的价</b>——没人举牌，价格就空涨。等到他们觉得"这个价可以了"集体举手，价格瞬间就塌。局限：真实市场里你分不清是冷场还是真抢手，要等下一根K线给答案（这也是作者原意）。</li><li>"买压/卖压"是这套书解释区间的根：强者和强者在两头等着，弱者在中间被来回收割——你在区间里亏的钱，本质上是交"站错队"的学费。</li></ul>
+<h2>本讲术语</h2>
+<ul><li>趋势K线（trend bar）：有实体、收盘远离开盘的K线，一方控盘。</li><li>十字星（doji）：实体极小或没有，多空僵持；本书把一切无趋势K线统称十字星。</li><li>高潮（climax）：市场朝一个方向走得过远过快的一段；结束于第一根停止K线。</li><li>停止K线：让高潮停下来的那根K线（长上影、内包、十字星或反向趋势K线）。</li><li>真空效应：强势一方故意不参与，让价格在没有对手的情况下空跑一段。</li><li>买压 / 卖压：强势多头/空头行为的累积迹象（K线队列特征）。</li><li>内包K线（inside bar）：整根K线落在前一根的范围内。</li></ul>
+<h2>图解</h2>
+<p><code style="background:#2c3138;padding:1px 6px;border-radius:4px;color:#7dd3fc">L06-climax.html</code>（自编示意：高潮、停止K线与高潮反转顶部的解剖）。</p>
+<h2>随堂检查</h2>
+<p>见 <code style="background:#2c3138;padding:1px 6px;border-radius:4px;color:#7dd3fc">../exercises/EX-L06.md</code>。</p>
+<h2>学习记录</h2>
+<ul><li>2026-10-14：讲解完成，待作答 EX-L06。</li></ul><div class="foot">本页由仓库内容生成 · 原书引用以 PDF 页锚点为准 · 学习笔记非原书内容</div></div>
+</body></html>

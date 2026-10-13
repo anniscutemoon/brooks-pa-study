@@ -76,11 +76,11 @@
           "prereq": "T01",
           "outcome": "指出任意一根K线是趋势K线还是十字星，并说明它透露的多空力量。",
           "summary": "单根K线怎么读：实体与影线分别说明什么。",
-          "status": "未学",
+          "status": "学习中",
           "links": {
-            "lesson": null,
-            "animation": null,
-            "exercise": null,
+            "lesson": "../chapters/ch02-trend-bars/lessons/L06-trend-bars.md",
+            "animation": "../chapters/ch02-trend-bars/lessons/L06-climax.html",
+            "exercise": "../chapters/ch02-trend-bars/exercises/EX-L06.md",
             "practice": null
           }
         },

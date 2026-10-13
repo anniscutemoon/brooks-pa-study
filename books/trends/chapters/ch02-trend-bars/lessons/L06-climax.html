@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>高潮、停止K线与高潮反转 · L06 图解</title>
+<style>
+body{margin:0;background:#1b1d21;color:#d7dae0;font:14px/1.7 "PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{width:980px;margin:0 auto;padding:18px}
+h1{font-size:18px;color:#e8eaed;margin:4px 0}
+.mark{display:inline-block;background:#3a2e18;color:#fbbf24;border-radius:4px;padding:1px 8px;font-size:12px;margin-bottom:8px}
+.src{color:#7c8590;font-size:12px;margin-bottom:10px}
+.stage{background:#23262b;border:1px solid #33373e;border-radius:8px;padding:14px;margin-bottom:12px}
+.caption{background:#20262e;border-left:3px solid #4fc1ff;border-radius:0 6px 6px 0;padding:10px 14px;color:#dbe2ea;font-size:14px;margin-top:10px}
+h2{font-size:15px;color:#9ecbff;margin:0 0 8px}
+</style></head><body><div class="wrap">
+<h1>高潮、停止K线与高潮反转顶部</h1>
+<div><span class="mark">自编示意图解（教学重绘，非原书图表）</span></div>
+<div class="src">对应原书：《高级趋势技术分析》第 2 章（PDF 第 69-72 页）。</div>
+
+<div class="stage"><h2>第一步：高潮死于第一根停止K线</h2>
+<svg width="920" height="250" viewBox="0 0 920 250">
+  <rect x="0" y="0" width="920" height="250" fill="#23262b"/>
+  <!-- 三根大阳 -->
+  <g>
+    <line x1="120" y1="205" x2="120" y2="150" stroke="#d43a31" stroke-width="3"/><rect x="105" y="150" width="30" height="55" fill="#d43a31"/>
+    <line x1="190" y1="150" x2="190" y2="95" stroke="#d43a31" stroke-width="3"/><rect x="175" y="95" width="30" height="55" fill="#d43a31"/>
+    <line x1="260" y1="95" x2="260" y2="40" stroke="#d43a31" stroke-width="3"/><rect x="245" y="40" width="30" height="55" fill="#d43a31"/>
+  </g>
+  <!-- 停止K线：长上影小阳 -->
+  <line x1="330" y1="18" x2="330" y2="55" stroke="#d43a31" stroke-width="3"/><rect x="315" y="42" width="30" height="13" fill="#d43a31"/>
+  <rect x="70" y="18" width="250" height="26" rx="6" fill="#1f2d26" stroke="#2fa35a"/>
+  <text x="195" y="36" fill="#5ecb8a" font-size="13" text-anchor="middle">买入高潮 = 这三根（上涨）</text>
+  <rect x="300" y="60" width="120" height="26" rx="6" fill="#3a2e18" stroke="#f59e0b"/>
+  <text x="360" y="78" fill="#fbbf24" font-size="13" text-anchor="middle">停止K线</text>
+  <text x="360" y="112" fill="#9aa1ab" font-size="12" text-anchor="middle">长上影小阳 / 内包 / 十字星 / 阴线</text>
+  <text x="460" y="48" fill="#dbe2ea" font-size="14">高潮在停止K线出现时就结束了</text>
+  <text x="460" y="72" fill="#9aa1ab" font-size="13">但"高潮结束" ≠ "反转"——</text>
+  <text x="460" y="92" fill="#9aa1ab" font-size="13">接下来只是进入双向交易</text>
+  <text x="460" y="130" fill="#dbe2ea" font-size="13.5">此后只有两种出路，看下面两条分支</text>
+</svg></div>
+
+<div class="stage"><h2>第二步：两种出路</h2>
+<svg width="920" height="290" viewBox="0 0 920 290">
+  <rect x="0" y="0" width="920" height="290" fill="#23262b"/>
+  <!-- 分支A -->
+  <rect x="30" y="16" width="420" height="250" rx="10" fill="#1f2d26" stroke="#2fa35a"/>
+  <text x="240" y="44" fill="#5ecb8a" font-size="14.5" text-anchor="middle" font-weight="bold">分支 A：多头赢 → 趋势恢复</text>
+  <line x1="120" y1="200" x2="120" y2="170" stroke="#2fa35a" stroke-width="3"/><rect x="105" y="160" width="30" height="40" fill="#2fa35a" opacity="0.55"/>
+  <line x1="190" y1="190" x2="190" y2="150" stroke="#2fa35a" stroke-width="3"/><rect x="175" y="160" width="30" height="30" fill="#2fa35a" opacity="0.55"/>
+  <line x1="260" y1="170" x2="260" y2="110" stroke="#d43a31" stroke-width="3"/><rect x="245" y="110" width="30" height="55" fill="#d43a31"/>
+  <line x1="330" y1="110" x2="330" y2="60" stroke="#d43a31" stroke-width="3"/><rect x="315" y="60" width="30" height="55" fill="#d43a31"/>
+  <text x="240" y="245" fill="#c9e6d4" font-size="12.5" text-anchor="middle">双向交易后多头胜出，继续上攻</text>
+  <!-- 分支B -->
+  <rect x="470" y="16" width="420" height="250" rx="10" fill="#2d1f1f" stroke="#D9534F"/>
+  <text x="680" y="44" fill="#f28b88" font-size="14.5" text-anchor="middle" font-weight="bold">分支 B：空头赢 → 高潮反转顶部</text>
+  <line x1="560" y1="200" x2="560" y2="170" stroke="#2fa35a" stroke-width="3"/><rect x="545" y="160" width="30" height="40" fill="#2fa35a" opacity="0.55"/>
+  <line x1="630" y1="190" x2="630" y2="150" stroke="#2fa35a" stroke-width="3"/><rect x="615" y="160" width="30" height="30" fill="#2fa35a" opacity="0.55"/>
+  <line x1="700" y1="160" x2="700" y2="90" stroke="#2fa35a" stroke-width="3"/><rect x="685" y="90" width="30" height="70" fill="#2fa35a"/>
+  <line x1="770" y1="120" x2="770" y2="170" stroke="#2fa35a" stroke-width="3"/><rect x="755" y="110" width="30" height="50" fill="#2fa35a"/>
+  <rect x="620" y="52" width="200" height="24" rx="6" fill="#3a2222" stroke="#D9534F"/>
+  <text x="720" y="69" fill="#f28b88" font-size="12.5" text-anchor="middle">反向强趋势K线 = 空头突破</text>
+  <text x="680" y="245" fill="#e8c9c9" font-size="12.5" text-anchor="middle">反转 = 买入高潮 + 空头突破（缺一不可）</text>
+</svg>
+<div class="caption">真空效应（作者，PDF P70）：急升时强势空头故意不卖、强势多头暂缓平仓——价格没有对手所以空涨；等价格到了他们都愿意卖的区域，集体出手，反转开始。如果急升后迎来的是更多买盘，那就不是真空，是真买。</div></div>
+
+<div class="stage"><h2>买压与卖压：区间是怎么形成的（PDF P72-73）</h2>
+<svg width="920" height="170" viewBox="0 0 920 170">
+  <rect x="0" y="0" width="920" height="170" fill="#23262b"/>
+  <line x1="60" y1="50" x2="860" y2="50" stroke="#D9534F" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="866" y="54" fill="#f28b88" font-size="12">区间顶</text>
+  <line x1="60" y1="125" x2="860" y2="125" stroke="#2fa35a" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="866" y="129" fill="#5ecb8a" font-size="12">区间底</text>
+  <text x="100" y="40" fill="#f28b88" font-size="13">强势空头：只愿意逢高卖</text>
+  <text x="100" y="150" fill="#5ecb8a" font-size="13">强势多头：越跌越买</text>
+  <text x="480" y="40" fill="#9aa1ab" font-size="13">弱势空头：突破追空、高点止损买回</text>
+  <text x="480" y="150" fill="#9aa1ab" font-size="13">弱势多头：低点割肉、怕踏空追高</text>
+  <polyline points="120,125 220,55 320,120 420,58 520,118 620,60 720,122 820,58" fill="none" stroke="#d7dae0" stroke-width="2.5"/>
+</svg>
+<div class="caption">强势双方在两头等，弱势双方在中间被收割。K线队列告诉你谁在集结：下跌趋势中大阳线/下影线变多 = 买压；上升趋势中长阴线变多 = 卖压（作者原话：这些行为的主体都是机构）。</div></div>
+</div></body></html>
