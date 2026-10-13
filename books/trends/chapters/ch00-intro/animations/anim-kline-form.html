@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>一根K线是怎么长出来的 · 零基础补课动画</title>
+<style>
+body{margin:0;background:#1b1d21;color:#d7dae0;font:14px/1.7 "PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{width:980px;margin:0 auto;padding:18px}
+h1{font-size:18px;color:#e8eaed;margin:4px 0}
+.mark{display:inline-block;background:#3a2e18;color:#fbbf24;border-radius:4px;padding:1px 8px;font-size:12px;margin-bottom:8px}
+.src{color:#7c8590;font-size:12px;margin-bottom:10px}
+.stage{background:#23262b;border:1px solid #33373e;border-radius:8px;padding:10px}
+.ctrl{margin:10px 0 2px}
+button{background:#2c3138;color:#d7dae0;border:1px solid #3d434c;border-radius:6px;padding:5px 14px;font-size:13px;cursor:pointer;margin-right:8px}
+button:hover{border-color:#4fc1ff;color:#4fc1ff}
+.stepno{color:#8b929e;font-size:12.5px;margin-left:6px}
+.caption{background:#20262e;border-left:3px solid #4fc1ff;border-radius:0 6px 6px 0;padding:10px 14px;min-height:44px;color:#dbe2ea;font-size:14.5px;margin-top:8px}
+.legend{background:#23262b;border:1px solid #33373e;border-radius:8px;padding:10px 14px;margin-top:12px;font-size:13px;color:#aeb6c2}
+.legend b{color:#dbe2ea}
+.sw{display:inline-block;width:14px;height:10px;vertical-align:middle;margin:0 6px 2px 0}
+.txt{background:#1f2226;border:1px dashed #3d434c;border-radius:8px;padding:10px 14px;margin-top:12px;font-size:13px;color:#9aa1ab}
+.txt b{color:#aeb6c2}
+.terms{margin-top:12px;font-size:13px;color:#9aa1ab}
+.terms div{margin:3px 0}
+.terms b{color:#7dd3fc;font-weight:600}
+</style></head><body><div class="wrap">
+<h1>一根K线是怎么长出来的</h1>
+<div><span class="mark">补充 · 自编示意动画</span></div>
+<div class="src">数值为教学虚构，不是原书图表、不是真实行情。对应原书：《高级趋势技术分析》引言默认读者已会读K线，本课是零基础补课，讲完立即回到引言。</div>
+
+<div class="stage">
+<svg id="svg" width="940" height="400" viewBox="0 0 940 400">
+  <rect x="0" y="0" width="940" height="400" fill="#23262b"/>
+  <!-- 网格 -->
+  <g id="gridG" stroke="#33373e" stroke-width="1">
+    <line x1="40" y1="40" x2="520" y2="40"/><line x1="40" y1="93" x2="520" y2="93"/>
+    <line x1="40" y1="147" x2="520" y2="147"/><line x1="40" y1="200" x2="520" y2="200"/>
+    <line x1="40" y1="253" x2="520" y2="253"/><line x1="40" y1="307" x2="520" y2="307"/>
+    <line x1="40" y1="360" x2="520" y2="360"/>
+  </g>
+  <g fill="#6b7280" font-size="11" text-anchor="end">
+    <text x="34" y="44">108</text><text x="34" y="97">106</text><text x="34" y="151">104</text>
+    <text x="34" y="204">102</text><text x="34" y="257">100</text><text x="34" y="311">98</text>
+    <text x="34" y="364">96</text>
+  </g>
+  <text x="280" y="388" fill="#6b7280" font-size="12" text-anchor="middle">5分钟里价格走的路</text>
+  <text x="740" y="388" fill="#6b7280" font-size="12" text-anchor="middle">这根K线记下来的样子</text>
+  <line x1="560" y1="30" x2="560" y2="370" stroke="#2c3138" stroke-width="1"/>
+
+  <!-- 阳线（牛）路径：开100(70,253) → 低98(170,307) → 高106(350,93) → 收105(480,120) -->
+  <g stroke="#e8eaed" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <path id="bp1" class="draw" d="M70,253 L170,307"/>
+    <path id="bp2" class="draw" d="M170,307 L350,93"/>
+    <path id="bp3" class="draw" d="M350,93 L480,120"/>
+  </g>
+  <g id="bDots">
+    <circle id="dOpen" class="fade" cx="70" cy="253" r="5" fill="#4fc1ff"/>
+    <text id="tOpen" class="fade" x="58" y="240" fill="#4fc1ff" font-size="12">开盘 100</text>
+    <circle id="dLow" class="fade" cx="170" cy="307" r="5" fill="#f472b6"/>
+    <text id="tLow" class="fade" x="140" y="330" fill="#f472b6" font-size="12">最低 98</text>
+    <circle id="dHigh" class="fade" cx="350" cy="93" r="5" fill="#f472b6"/>
+    <text id="tHigh" class="fade" x="318" y="80" fill="#f472b6" font-size="12">最高 106</text>
+    <circle id="dClose" class="fade" cx="480" cy="120" r="5" fill="#4fc1ff"/>
+    <text id="tClose" class="fade" x="440" y="108" fill="#4fc1ff" font-size="12">收盘 105</text>
+  </g>
+
+  <!-- 阴线（熊）路径：开105(70,120) → 高107(170,67) → 低97(350,333) → 收98(480,307) -->
+  <g stroke="#e8eaed" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <path id="sp1" class="draw" d="M70,120 L170,67"/>
+    <path id="sp2" class="draw" d="M170,67 L350,333"/>
+    <path id="sp3" class="draw" d="M350,333 L480,307"/>
+  </g>
+  <g id="sDots">
+    <circle id="sdOpen" class="fade" cx="70" cy="120" r="5" fill="#4fc1ff"/>
+    <text id="sdOpenT" class="fade" x="58" y="108" fill="#4fc1ff" font-size="12">开盘 105</text>
+    <circle id="sdHigh" class="fade" cx="170" cy="67" r="5" fill="#f472b6"/>
+    <text id="sdHighT" class="fade" x="140" y="55" fill="#f472b6" font-size="12">最高 107</text>
+    <circle id="sdLow" class="fade" cx="350" cy="333" r="5" fill="#f472b6"/>
+    <text id="sdLowT" class="fade" x="318" y="356" fill="#f472b6" font-size="12">最低 97</text>
+    <circle id="sdClose" class="fade" cx="480" cy="307" r="5" fill="#4fc1ff"/>
+    <text id="sdCloseT" class="fade" x="448" y="330" fill="#4fc1ff" font-size="12">收盘 98</text>
+  </g>
+
+  <!-- 虚线连接：极值点到蜡烛 -->
+  <g id="dashG" stroke="#4b5563" stroke-width="1" stroke-dasharray="5 4">
+    <line id="dashH" x1="350" y1="93" x2="740" y2="93"/>
+    <line id="dashL" x1="170" y1="307" x2="740" y2="307"/>
+  </g>
+
+  <!-- 阳蜡烛：开100 收105 高106 低98 -->
+  <g id="bullC">
+    <line id="bcWu" x1="740" y1="93" x2="740" y2="120" stroke="#d43a31" stroke-width="3"/>
+    <rect id="bcBody" x="708" y="120" width="64" height="133" fill="#d43a31"/>
+    <line id="bcWd" x1="740" y1="253" x2="740" y2="307" stroke="#d43a31" stroke-width="3"/>
+    <text id="bcT1" x="790" y="190" fill="#d7dae0" font-size="12.5">实体：开100 到 收105（站住的部分）</text>
+    <text id="bcT2" x="790" y="97" fill="#9aa1ab" font-size="12.5">上影线：冲到106没站住</text>
+    <text id="bcT3" x="790" y="303" fill="#9aa1ab" font-size="12.5">下影线：砸到98被接住</text>
+    <text id="bcT4" x="740" y="60" fill="#d43a31" font-size="14" text-anchor="middle">阳线（收高于开）</text>
+  </g>
+
+  <!-- 阴蜡烛：开105 收98 高107 低97 -->
+  <g id="bearC">
+    <line id="scWu" x1="740" y1="67" x2="740" y2="120" stroke="#2fa35a" stroke-width="3"/>
+    <rect id="scBody" x="708" y="120" width="64" height="187" fill="#2fa35a"/>
+    <line id="scWd" x1="740" y1="307" x2="740" y2="333" stroke="#2fa35a" stroke-width="3"/>
+    <text id="scT1" x="790" y="215" fill="#d7dae0" font-size="12.5">实体：开105 到 收98</text>
+    <text id="scT2" x="790" y="71" fill="#9aa1ab" font-size="12.5">上影线：到过107</text>
+    <text id="scT3" x="790" y="333" fill="#9aa1ab" font-size="12.5">下影线：到过97</text>
+    <text id="scT4" x="740" y="45" fill="#2fa35a" font-size="14" text-anchor="middle">阴线（收低于开）</text>
+  </g>
+
+  <!-- 提问框 -->
+  <g id="qBox">
+    <rect x="150" y="140" width="260" height="90" rx="8" fill="#3a2e18" stroke="#f59e0b"/>
+    <text x="280" y="176" fill="#fbbf24" font-size="15" text-anchor="middle">先猜，再点下一步</text>
+    <text x="280" y="200" fill="#e8d9b8" font-size="12.5" text-anchor="middle">开105 收98，K线什么颜色？</text>
+  </g>
+
+  <!-- 总结 -->
+  <g id="sumG">
+    <rect x="60" y="30" width="480" height="56" rx="8" fill="#20262e" stroke="#4fc1ff"/>
+    <text x="300" y="53" fill="#dbe2ea" font-size="13.5" text-anchor="middle">一根K线 = 一场比赛的技术统计</text>
+    <text x="300" y="74" fill="#9aa1ab" font-size="12.5" text-anchor="middle">从哪开始(开) 到哪结束(收) 最疯到过哪(高) 最惨到过哪(低)</text>
+  </g>
+</svg>
+
+<div class="ctrl">
+  <button onclick="prev()">上一步</button>
+  <button onclick="play()" id="playBtn">播放</button>
+  <button onclick="pausePlay()">暂停</button>
+  <button onclick="next()">下一步</button>
+  <button onclick="resetAll()">重置</button>
+  <span class="stepno" id="stepNo">第 1 / 8 步（键盘 ← → 也能翻）</span>
+</div>
+<div class="caption" id="cap"></div>
+</div>
+
+<div class="legend"><b>图例（本课统一约定，后面所有图都用这一套）：</b><br>
+<span class="sw" style="background:#d43a31"></span>红色 = 阳线，收盘价高于开盘价（这5分钟买方赢了）
+<span class="sw" style="background:#2fa35a"></span>绿色 = 阴线，收盘价低于开盘价（卖方赢了）—— 采用国内习惯（红涨绿跌）<br>
+粗块 = 实体（从开到收，站住的部分）；细线 = 影线（到过、没站住的部分）。不靠颜色也能分辨：看粗块上下两端哪个是开、哪个是收。</div>
+
+<div class="txt"><b>文字版（复习用，与动画内容一致）：</b><br>
+1. 5分钟开始，第一笔成交 100 = 开盘价。2. 有人急卖，价格被砸到 98 = 最低价，有人接住。3. 买方反攻推到 106 = 最高价，推不动了。4. 时间到，停在 105 = 收盘价。<br>
+5. 这根K线只记4个数：开100、收105、最高106、最低98。收高于开 → 红色阳线；实体 100-105；上影线到 106；下影线到 98。<br>
+6. 反例：开105、收98、最高107、最低97 → 绿色阴线；实体 105-98；上影线到 107；下影线到 97。<br>
+7. 影线 = 到过没站住；实体 = 站住的部分。</div>
+
+<div class="terms"><b>本课术语大白话（随时回来查）：</b>
+<div><b>开盘价 open</b> — 这段时间的第一笔成交价</div>
+<div><b>收盘价 close</b> — 这段时间的最后一笔成交价</div>
+<div><b>最高价 high / 最低价 low</b> — 这段时间到过的两个极端价格</div>
+<div><b>实体 body</b> — 开盘价到收盘价之间那个粗块</div>
+<div><b>影线 wick</b> — 实体上下伸出的细线，价格到过但没站住的地方</div>
+<div><b>阳线 / 阴线</b> — 收高于开（红）/ 收低于开（绿）</div>
+<div><b>K线 candlestick</b> — 把一场比赛（一段时间）浓缩成的这一根小柱子</div>
+</div>
+</div>
+
+<script>
+var DRAW_IDS=["bp1","bp2","bp3","sp1","sp2","sp3"];
+var FADE_IDS=["dOpen","tOpen","dLow","tLow","dHigh","tHigh","dClose","tClose",
+ "sdOpen","sdOpenT","sdHigh","sdHighT","sdLow","sdLowT","sdClose","sdCloseT"];
+var GRP_IDS=["dashG","bullC","bearC","qBox","sumG"];
+var lens={};
+function el(id){return document.getElementById(id)}
+function hideDraw(id){el(id).style.strokeDashoffset=lens[id]}
+function showDraw(id){el(id).style.strokeDashoffset=0}
+function hide(id){el(id).style.opacity=0}
+function show(id){el(id).style.opacity=1}
+function hideG(id){el(id).style.opacity=0;el(id).style.transform="scaleY(0.001)"}
+function showG(id){el(id).style.opacity=1;el(id).style.transform="scaleY(1)"}
+
+var CAPS=[
+ "比赛开始。假设这是某个5分钟，第一笔成交在 100 —— 这个价叫“开盘价”。",
+ "有人着急卖，把价格砸到 98，又有人接住了。98 是这5分钟的“最低价”。",
+ "买方反攻，一口气推到 106，推不动了。106 是“最高价”。",
+ "5分钟到点，最后成交停在 105 —— 这叫“收盘价”。",
+ "右边揭晓：这根K线只记4个数：开100、最低98、最高106、收105。粗块叫“实体”（从开到收、站住的部分），细线叫“影线”（到过、没站住的部分）。收高于开，画成红色，叫“阳线”——这5分钟买方赢了。",
+ "先猜再看：如果反过来——开105、收98，中间最高107、最低97——这根K线是什么颜色？实体从哪到哪？想好了点“下一步”。",
+ "答案：收98 低于 开105，画成绿色，叫“阴线”——卖方赢了。实体从105到98，上影线到107，下影线到97。",
+ "一句话总结：一根K线 = 一场比赛的技术统计：从哪开始（开）、到哪结束（收）、最疯到过哪（高）、最惨到过哪（低）。影线 = 到过没站住；实体 = 站住的部分。"
+];
+
+function applyStep(n){
+  DRAW_IDS.forEach(hideDraw); FADE_IDS.forEach(hide); GRP_IDS.forEach(hideG);
+  hide("dashH");hide("dashL");
+  if(n>=0){show("dOpen");show("tOpen")}
+  if(n>=1){showDraw("bp1");show("dLow");show("tLow")}
+  if(n>=2){showDraw("bp2");show("dHigh");show("tHigh")}
+  if(n>=3){showDraw("bp3");show("dClose");show("tClose")}
+  if(n>=4&&n<6){showG("dashG");show("dashH");show("dashL");showG("bullC")}
+  if(n==5){showG("qBox")}
+  if(n>=6){
+    ["bp1","bp2","bp3"].forEach(hideDraw);
+    ["dOpen","tOpen","dLow","tLow","dHigh","tHigh","dClose","tClose"].forEach(hide);
+    hideG("dashG");hideG("bullC");
+    showDraw("sp1");showDraw("sp2");showDraw("sp3");
+    ["sdOpen","sdOpenT","sdHigh","sdHighT","sdLow","sdLowT","sdClose","sdCloseT"].forEach(show);
+    showG("bearC");
+  }
+  if(n>=7){showG("sumG")}
+  el("cap").textContent=CAPS[n];
+  el("stepNo").textContent="第 "+(n+1)+" / 8 步（键盘 ← → 也能翻）";
+}
+var step=0,timer=null;
+function next(){if(step<7){step++;applyStep(step)}else{pausePlay()}}
+function prev(){if(step>0){step--;applyStep(step)}}
+function play(){if(timer)return;el("playBtn").textContent="播放中";timer=setInterval(function(){if(step<7){step++;applyStep(step)}else{pausePlay()}},2600)}
+function pausePlay(){if(timer){clearInterval(timer);timer=null}el("playBtn").textContent="播放"}
+function resetAll(){pausePlay();step=0;applyStep(0)}
+document.addEventListener("keydown",function(e){if(e.key==="ArrowRight")next();if(e.key==="ArrowLeft")prev()});
+
+window.onload=function(){
+  DRAW_IDS.forEach(function(id){var p=el(id);var L=p.getTotalLength();lens[id]=L;
+    p.style.strokeDasharray=L;p.style.strokeDashoffset=L;p.style.transition="stroke-dashoffset 0.9s ease"});
+  FADE_IDS.forEach(function(id){el(id).style.transition="opacity 0.5s ease"});
+  GRP_IDS.forEach(function(id){var g=el(id);g.style.transformBox="fill-box";g.style.transformOrigin="50% 50%";
+    g.style.transition="transform 0.7s ease, opacity 0.5s ease"});
+  el("dashH").style.transition="opacity 0.5s ease";el("dashL").style.transition="opacity 0.5s ease";
+  applyStep(0);
+};
+</script></body></html>
