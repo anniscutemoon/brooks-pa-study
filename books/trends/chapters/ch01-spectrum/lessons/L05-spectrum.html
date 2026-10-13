@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>价格行为的谱系 · L05 图解</title>
+<style>
+body{margin:0;background:#1b1d21;color:#d7dae0;font:14px/1.7 "PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{width:980px;margin:0 auto;padding:18px}
+h1{font-size:18px;color:#e8eaed;margin:4px 0}
+.mark{display:inline-block;background:#3a2e18;color:#fbbf24;border-radius:4px;padding:1px 8px;font-size:12px;margin-bottom:8px}
+.src{color:#7c8590;font-size:12px;margin-bottom:10px}
+.stage{background:#23262b;border:1px solid #33373e;border-radius:8px;padding:14px;margin-bottom:12px}
+.caption{background:#20262e;border-left:3px solid #4fc1ff;border-radius:0 6px 6px 0;padding:10px 14px;color:#dbe2ea;font-size:14px;margin-top:10px}
+h2{font-size:15px;color:#9ecbff;margin:0 0 8px}
+</style></head><body><div class="wrap">
+<h1>价格行为的谱系：从极端趋势到极端交易区间</h1>
+<div><span class="mark">自编示意图解（教学重绘，非原书图表）</span></div>
+<div class="src">对应原书：《高级趋势技术分析》第 1 章（印刷页 58-60 / PDF 第 65-67 页）。</div>
+
+<div class="stage"><h2>谱系横条：市场永远在两端之间，很少在极端</h2>
+<svg width="920" height="240" viewBox="0 0 920 240">
+  <rect x="0" y="0" width="920" height="240" fill="#23262b"/>
+  <defs><linearGradient id="sp" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#2fa35a" stop-opacity="0.55"/>
+    <stop offset="0.5" stop-color="#3D7BD9" stop-opacity="0.25"/>
+    <stop offset="1" stop-color="#f59e0b" stop-opacity="0.5"/>
+  </linearGradient></defs>
+  <rect x="60" y="90" width="800" height="56" rx="10" fill="url(#sp)"/>
+  <text x="60" y="70" fill="#5ecb8a" font-size="15" font-weight="bold">极端趋势</text>
+  <text x="60" y="170" fill="#9aa1ab" font-size="12">几乎每个最小报价单位都比前一个更高/更低</text>
+  <text x="860" y="70" fill="#fbbf24" font-size="15" font-weight="bold" text-anchor="end">极端交易区间</text>
+  <text x="860" y="170" fill="#9aa1ab" font-size="12" text-anchor="end">每 1-2 个单位变动紧跟 1-2 个单位反向</text>
+  <polyline points="90,132 120,118 150,124 180,106 210,112" fill="none" stroke="#5ecb8a" stroke-width="2.5"/>
+  <polyline points="680,118 710,132 740,106 770,132 800,108 830,128" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
+  <text x="460" y="125" fill="#d7dae0" font-size="13.5" text-anchor="middle">常见状态：稳定趋势带小回撤 ｜ 或窄幅区间震荡数小时</text>
+  <text x="460" y="215" fill="#7c8590" font-size="12.5" text-anchor="middle">极端状态很少见，出现也很短暂 —— 别把特例当常态</text>
+</svg></div>
+
+<div class="stage"><h2>惰性法则（本章最重要的一句，原书 P65）</h2>
+<svg width="920" height="120" viewBox="0 0 920 120">
+  <rect x="0" y="0" width="920" height="120" fill="#23262b"/>
+  <rect x="40" y="18" width="400" height="84" rx="10" fill="#1f2d26" stroke="#2fa35a"/>
+  <text x="240" y="52" fill="#5ecb8a" font-size="15" text-anchor="middle" font-weight="bold">处于趋势中</text>
+  <text x="240" y="80" fill="#c9e6d4" font-size="14" text-anchor="middle">大部分反转尝试都会失败</text>
+  <rect x="480" y="18" width="400" height="84" rx="10" fill="#3a2e18" stroke="#f59e0b"/>
+  <text x="680" y="52" fill="#fbbf24" font-size="15" text-anchor="middle" font-weight="bold">处于区间中</text>
+  <text x="680" y="80" fill="#e8d9b8" font-size="14" text-anchor="middle">大部分突破尝试都会失败</text>
+</svg>
+<div class="caption">市场倾向于重复当前状态。推论：在趋势里少用区间玩法（别急着抄底摸顶），在区间里少用趋势玩法（别追涨杀跌）。</div></div>
+
+<div class="stage"><h2>级别嵌套：你看到的"崩盘"，可能只是大图里的一次回调</h2>
+<svg width="920" height="190" viewBox="0 0 920 190">
+  <rect x="0" y="0" width="920" height="190" fill="#23262b"/>
+  <rect x="40" y="30" width="380" height="130" rx="10" fill="#20262e" stroke="#4fc1ff"/>
+  <text x="230" y="56" fill="#4fc1ff" font-size="13.5" text-anchor="middle">5 分钟图：一次"崩盘"</text>
+  <polyline points="70,70 120,75 160,72 200,120 260,140 340,150" fill="none" stroke="#d43a31" stroke-width="3"/>
+  <rect x="500" y="30" width="380" height="130" rx="10" fill="#20262e" stroke="#2fa35a"/>
+  <text x="690" y="56" fill="#5ecb8a" font-size="13.5" text-anchor="middle">月线图：只是回踩上升趋势线</text>
+  <polyline points="530,140 600,110 660,118 720,86 790,95 850,60" fill="none" stroke="#5ecb8a" stroke-width="2.5"/>
+  <line x1="530" y1="150" x2="860" y2="55" stroke="#2fa35a" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="700" y="175" fill="#7c8590" font-size="11.5" text-anchor="middle">1987、2009 崩盘在月线上就是这一下（原书 P65）</text>
+</svg>
+<div class="caption">所有趋势都包含较小的区间，所有区间都包含较小的趋势。先问"我在哪个级别、什么状态"，再谈形态。</div></div>
+</div></body></html>
