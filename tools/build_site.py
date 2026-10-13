@@ -177,6 +177,8 @@ def main():
                     for f in sorted(os.listdir(edir)):
                         if f.endswith(".md") and not f.endswith("-answers.md"):
                             exs.append((f, os.path.join(edir, f)))
+                        elif f.endswith(".html"):
+                            anims.append((f, rel(3, os.path.join("books", book, "chapters", ch, "exercises", f))))
                 if lessons or exs:
                     chapters.append((ch, lessons, exs, anims))
         if not chapters:
