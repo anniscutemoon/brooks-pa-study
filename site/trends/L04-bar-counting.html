@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>L04-bar-counting</title>
+<style>
+body{margin:0;background:#1b1d21;color:#d7dae0;font:14.5px/1.75 "PingFang SC","Microsoft YaHei",sans-serif}
+.nav{background:#23262b;border-bottom:1px solid #33373e;padding:10px 22px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.nav a{color:#4fc1ff;text-decoration:none;font-size:13.5px}
+.nav a:hover{text-decoration:underline}
+.nav .pos{color:#8b929e;font-size:13px}
+.wrap{max-width:860px;margin:0 auto;padding:20px 26px 60px}
+h1{font-size:24px;color:#e8eaed;border-bottom:2px solid #4fc1ff;padding-bottom:8px;margin:14px 0}
+h2{font-size:19px;color:#9ecbff;margin:26px 0 8px}
+h3{font-size:16.5px;color:#c4ccd6;margin:20px 0 6px}
+h4{font-size:15px;color:#c4ccd6}
+p{margin:8px 0}
+ul,ol{margin:6px 0;padding-left:24px}
+li{margin:4px 0}
+blockquote{background:#20262e;border-left:3px solid #f59e0b;border-radius:0 6px 6px 0;padding:10px 14px;margin:10px 0;color:#dbe2ea}
+.tb{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px}
+.tb th{background:#262a30;color:#9ecbff;text-align:left;padding:7px 10px;border:1px solid #33373e}
+.tb td{padding:7px 10px;border:1px solid #33373e;color:#c4ccd6}
+.qa{margin:14px 0}
+.qt{color:#9ecbff;font-weight:600;margin-bottom:6px;font-size:14px}
+.qa textarea{width:100%;min-height:110px;background:#1f2226;color:#d7dae0;border:1px solid #3d434c;border-radius:8px;padding:10px;font:14px/1.6 "PingFang SC","Microsoft YaHei",sans-serif;box-sizing:border-box}
+.qa textarea:focus{border-color:#4fc1ff;outline:none}
+.qbtns{display:flex;gap:12px;align-items:center;margin:10px 0}
+.qbtns button{background:#20262e;border:1px solid #4fc1ff;color:#4fc1ff;border-radius:7px;padding:8px 18px;font-size:14px;cursor:pointer}
+.qbtns button:hover{background:#26303a}
+#saved{color:#8b929e;font-size:12.5px}
+.mats{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
+.mats a{display:inline-block;background:#20262e;border:1px solid #4fc1ff;color:#4fc1ff;border-radius:7px;padding:8px 16px;text-decoration:none;font-size:14px}
+.mats a:hover{background:#26303a}
+.foot{margin-top:36px;padding-top:12px;border-top:1px solid #33373e;color:#7c8590;font-size:12.5px}
+.card{display:block;background:#23262b;border:1px solid #33373e;border-left:4px solid #4fc1ff;border-radius:8px;padding:12px 16px;margin:10px 0;text-decoration:none}
+.card:hover{border-color:#4fc1ff}
+.card .t{color:#e8eaed;font-weight:600;font-size:15.5px}
+.card .s{color:#8b929e;font-size:12.5px;margin-top:3px}
+.tag{float:right;font-size:12px;color:#f59e0b}
+</style></head><body>
+<div class="nav"><a href="../index.html">首页</a> <span class="pos">高级趋势技术分析 / ch00-intro</span> <a href="L03-three-books.html">← 上一页</a> <a href="EX-L01.html">下一页 →</a> <a href="../../books/trends/mindmap/trends-map.html">思维导图</a></div>
+<div class="wrap"><div class="mats"><a href="../../books/trends/chapters/ch00-intro/lessons/L02-diagram.html">打开图解/动画：L02-diagram</a><a href="../../books/trends/chapters/ch00-intro/lessons/L03-building.html">打开图解/动画：L03-building</a><a href="../../books/trends/chapters/ch00-intro/lessons/L04-strength-card.html">打开图解/动画：L04-strength-card</a><a href="../../books/trends/chapters/ch00-intro/animations/anim-h1h2.html">打开图解/动画：anim-h1h2</a><a href="../../books/trends/chapters/ch00-intro/animations/anim-kline-form.html">打开图解/动画：anim-kline-form</a><a href="EX-L01.html">做随堂检查：EX-L01</a><a href="EX-L02.html">做随堂检查：EX-L02</a><a href="EX-L03.html">做随堂检查：EX-L03</a><a href="EX-L04.html">做随堂检查：EX-L04</a><a href="EX-V01.html">做随堂检查：EX-V01</a></div><h1>L04 · 引言收尾：数K线 + 强势信号清单（引言 第4讲，完）</h1>
+<h2>定位</h2>
+<ul><li>原书：《高级趋势技术分析》引言（PDF 第 34-43 页），导图节点 T00。引言到此学完。</li><li>类型：原书内容讲解。作者观点与教学解释已分开标注。</li></ul>
+<h2>学习目标（本讲学完你能做到）</h2>
+<ol><li>给出一段回调的K线序列，数出高1、高2，并说出高2 ≈ ABC 终点的含义（以及它的概率性质）。</li><li>说出多头反转K线的<b style="color:#e8eaed">最低要求</b>（收盘高于开盘，或收盘高于自身振幅中点）和空头镜像。</li><li>判断"强不强"时，用清单数证据条数，而不是凭感觉——并承认一两条证据 = 证据不足。</li></ol>
+<h2>作者观点（原书，PDF P34-43）</h2>
+<h3>数K线（bar counting）基础（P42-43）——引言里唯一给完整定义的方法论</h3>
+<ul><li>判断回调结束的一个可靠信号：当前K线高点至少高于前一根K线高点 1 个最小报价单位（tick）。数这种现象出现的次数，叫"数K线"。</li><li><b style="color:#e8eaed">高1</b>：上涨或区间的回调中，第一根"高点超过前一根高点"的K线，终结第一波回调（但回调本身可能没结束）。</li><li><b style="color:#e8eaed">高2</b>：第二次出现，终结第二波回调。上升趋势的高2 ≈ ABC 调整的终点 C（第一波=A，高1带来的方向改变=B，第二波=C）。</li><li><b style="color:#e8eaed">高3</b>：第三波回调的终结，通常类似楔形牛旗。<b style="color:#e8eaed">高4</b>：如果还失败（跌破高4低点），市场可能已不是回调而是转入下跌趋势。</li><li><b style="color:#e8eaed">低1/低2/低3/低4</b>：镜像，用于下跌或震荡行情中的向上调整（第一根"低点低于前一根低点"的K线为低1）。</li><li><b style="color:#e8eaed">低4失败</b>（触发做空后，一根K线涨破低4信号K线高点）= 空头失去控制权，转入双向交易或多头夺权。</li></ul>
+<h3>反转K线的最低要求与最强特征（P37-38）</h3>
+<ul><li>多头反转K线<b style="color:#e8eaed">最低要求</b>：收盘高于开盘（阳线实体），或收盘高于振幅中点。最强势特征：开盘接近/低于前收、收盘高于前收；下影线约占K线高 1/3-1/2、上影线几乎没有；与前K线重叠少；下一根是强势入场K线；收盘反转1根以上K线的收盘和高点。空头镜像。</li></ul>
+<h3>四份强势清单（P34-41）</h3>
+<p>强劲趋势特征、强势突破特征、反转K线特征、强势反转特征——完整压缩版见 <code style="background:#2c3138;padding:1px 6px;border-radius:4px;color:#7dd3fc">L04-strength-card.html</code>（速查卡）。这些清单是后面 26 章的预告片，正文会逐条展开。</p>
+<h2>教学解释（我的，不是作者的）</h2>
+<ul><li>四份清单看着长，其实是<b style="color:#e8eaed">同一套强度语言</b>的六次重复：长实体、短影线、连续性、回调浅、突破多根、收盘反转。Brooks 判断"强不强"就数这几根支柱。所以不用背清单，记住六支柱，清单是自己长出来的。</li><li>数K线为什么有效（教学推测，非作者原话）：回调里每一次"高点被超过"都代表买方试了一次反攻；第二次反攻（高2）证明第一次不是巧合——空头两波都没打死价格，子弹就差不多了。局限：这是事后解释，实战中高2也会失败，所以永远配合止损用。</li><li>作者提到艾略特波浪（1浪4浪不重叠）时自己补了一句"这一点对于交易而言并不是太重要"（P36）——遇到这种，听作者的，跳过。</li></ul>
+<h2>本讲术语</h2>
+<ul><li>数K线（bar counting）：数"高点超过前一根高点"出现几次，给回调分段的方法。</li><li>高1 / 高2：回调中第 1 / 第 2 次"高点超前高"的K线；低1 / 低2：镜像。</li><li>ABC 调整：两段式回调的叫法（A 第一波、B 方向改变、C 第二波）。</li><li>最小报价单位（tick）：价格能动的最小一格。</li></ul>
+<h2>图解与动画</h2>
+<ul><li><code style="background:#2c3138;padding:1px 6px;border-radius:4px;color:#7dd3fc">../animations/anim-h1h2.html</code>（数K线动画：高1高2与ABC，自编示意）</li><li><code style="background:#2c3138;padding:1px 6px;border-radius:4px;color:#7dd3fc">L04-strength-card.html</code>（四份强势清单速查卡，原书内容压缩）</li></ul>
+<h2>随堂检查（引言综合检查）</h2>
+<p>见 <code style="background:#2c3138;padding:1px 6px;border-radius:4px;color:#7dd3fc">../exercises/EX-L04.md</code>（3 题：数K线应用 30 + 反转K线判定 30 + 强度证据列举 40）。</p>
+<h2>学习记录</h2>
+<ul><li>2026-10-14：讲解完成，引言（T00）全部讲完，待作答 EX-L04（= 引言综合检查）。</li></ul><div class="foot">本页由仓库内容生成 · 原书引用以 PDF 页锚点为准 · 学习笔记非原书内容</div></div>
+</body></html>

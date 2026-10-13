@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>数K线：高1与高2 · 互动动画</title>
+<style>
+body{margin:0;background:#1b1d21;color:#d7dae0;font:14px/1.7 "PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{width:980px;margin:0 auto;padding:18px}
+h1{font-size:18px;color:#e8eaed;margin:4px 0}
+.mark{display:inline-block;background:#3a2e18;color:#fbbf24;border-radius:4px;padding:1px 8px;font-size:12px;margin-bottom:8px}
+.src{color:#7c8590;font-size:12px;margin-bottom:10px}
+.stage{background:#23262b;border:1px solid #33373e;border-radius:8px;padding:10px}
+.ctrl{margin:10px 0 2px}
+button{background:#2c3138;color:#d7dae0;border:1px solid #3d434c;border-radius:6px;padding:5px 14px;font-size:13px;cursor:pointer;margin-right:8px}
+button:hover{border-color:#4fc1ff;color:#4fc1ff}
+.stepno{color:#8b929e;font-size:12.5px;margin-left:6px}
+.caption{background:#20262e;border-left:3px solid #4fc1ff;border-radius:0 6px 6px 0;padding:10px 14px;min-height:44px;color:#dbe2ea;font-size:14.5px;margin-top:8px}
+.txt{background:#1f2226;border:1px dashed #3d434c;border-radius:8px;padding:10px 14px;margin-top:12px;font-size:13px;color:#9aa1ab}
+.txt b{color:#aeb6c2}
+.terms{margin-top:12px;font-size:13px;color:#9aa1ab}
+.terms div{margin:3px 0}
+.terms b{color:#7dd3fc;font-weight:600}
+</style></head><body><div class="wrap">
+<h1>数K线：高1与高2（上涨趋势中的回调计数）</h1>
+<div><span class="mark">自编示意动画 · 数值虚构</span></div>
+<div class="src">对应原书：《高级趋势技术分析》引言"数K线基础知识：高1、高2、低1、低2"（PDF 第 42-43 页）。</div>
+
+<div class="stage">
+<svg id="svg" width="940" height="420" viewBox="0 0 940 420">
+  <rect x="0" y="0" width="940" height="420" fill="#23262b"/>
+  <g id="grid" stroke="#33373e">
+    <line x1="50" y1="68" x2="900" y2="68"/><line x1="50" y1="120" x2="900" y2="120"/>
+    <line x1="50" y1="172" x2="900" y2="172"/><line x1="50" y1="224" x2="900" y2="224"/>
+    <line x1="50" y1="276" x2="900" y2="276"/><line x1="50" y1="328" x2="900" y2="328"/>
+    <line x1="50" y1="380" x2="900" y2="380"/>
+  </g>
+  <g fill="#6b7280" font-size="11" text-anchor="end">
+    <text x="44" y="72">112</text><text x="44" y="124">110</text><text x="44" y="176">108</text>
+    <text x="44" y="228">106</text><text x="44" y="280">104</text><text x="44" y="332">102</text>
+    <text x="44" y="384">100</text>
+  </g>
+  <g id="bars"></g>
+  <!-- 标注 -->
+  <g id="h1Flag"><rect x="330" y="120" width="76" height="30" rx="6" fill="#3a2e18" stroke="#f59e0b"/><text x="368" y="140" fill="#fbbf24" font-size="15" text-anchor="middle" font-weight="bold">高1</text></g>
+  <g id="h2Flag"><rect x="570" y="150" width="76" height="30" rx="6" fill="#3a2e18" stroke="#f59e0b"/><text x="608" y="170" fill="#fbbf24" font-size="15" text-anchor="middle" font-weight="bold">高2</text></g>
+  <g id="abcG" stroke="#4fc1ff" stroke-width="2" fill="none" stroke-dasharray="6 4">
+    <path id="abcA" d="M140,120 L290,224"/>
+    <path id="abcB" d="M290,224 L370,172"/>
+    <path id="abcC" d="M370,172 L530,250"/>
+  </g>
+  <g id="abcT" fill="#4fc1ff" font-size="14" font-weight="bold">
+    <text id="tA" x="190" y="200">A 第一波回调</text>
+    <text id="tB" x="320" y="162">B</text>
+    <text id="tC" x="440" y="245">C 第二波回调</text>
+  </g>
+  <g id="qBox"><rect x="330" y="30" width="300" height="66" rx="8" fill="#3a2e18" stroke="#f59e0b"/>
+    <text x="480" y="56" fill="#fbbf24" font-size="14.5" text-anchor="middle">高1出现了，回调结束了吗？</text>
+    <text x="480" y="78" fill="#e8d9b8" font-size="12.5" text-anchor="middle">先想，再点下一步</text></g>
+  <g id="sumBox"><rect x="540" y="24" width="360" height="76" rx="8" fill="#20262e" stroke="#2fa35a"/>
+    <text x="720" y="50" fill="#5ecb8a" font-size="14" text-anchor="middle" font-weight="bold">高2 = ABC 回调的终点 C</text>
+    <text x="720" y="72" fill="#9aa1ab" font-size="12.5" text-anchor="middle">作者：回调大概率走完，趋势恢复</text>
+    <text x="720" y="90" fill="#9aa1ab" font-size="12.5" text-anchor="middle">（是"大概率"，不是"保证"）</text></g>
+</svg>
+
+<div class="ctrl">
+  <button onclick="prev()">上一步</button>
+  <button onclick="play()" id="playBtn">播放</button>
+  <button onclick="pausePlay()">暂停</button>
+  <button onclick="next()">下一步</button>
+  <button onclick="resetAll()">重置</button>
+  <span class="stepno" id="stepNo"></span>
+</div>
+<div class="caption" id="cap"></div>
+</div>
+
+<div class="txt"><b>文字版（复习用，与动画一致）：</b><br>
+背景：上涨趋势冲到 110 后开始回调。
+1. 价格跌到 106 一带。2. 一根阳线的高点 108 超过了前一根的高点 107 → 这根叫<b>高1</b>，它终结<b>第一波</b>回调（但回调本身未必结束）。3. 价格又跌到 105。4. 又一根阳线高点 107 超过前高 106 → 这根叫<b>高2</b>，终结<b>第二波</b>回调。5. 对位 ABC：第一波=A，高1带来的方向改变=B，第二波=C，高2 就是 C 的终点。作者：回调大概率走完，随后趋势恢复（105 → 112）。</div>
+
+<div class="terms"><b>本讲术语大白话：</b>
+<div><b>数K线 bar counting</b> — 数"高点超过前一根高点"这种现象发生了几次，用来给回调分段</div>
+<div><b>高1 / 高2</b> — 上涨或横盘中的回调里，第 1 次 / 第 2 次出现"高点超过前一根高点"的K线；高1 终结第一波回调，高2 终结第二波</div>
+<div><b>低1 / 低2</b> — 下跌或横盘中的反弹里，"低点低于前一根低点"的第 1 次 / 第 2 次（高1高2的镜像）</div>
+<div><b>ABC 调整</b> — 两段式回调的叫法：第一波 A、方向改变 B、第二波 C。上涨趋势里高2 ≈ C 的终点</div>
+<div><b>最小报价单位 tick</b> — 价格能动的最小一格（比如 0.25 个点）。原书要求"至少超过 1 个 tick"才算数</div>
+</div>
+</div>
+
+<script>
+// 10 根蜡烛: [开,收,高,低] （教学虚构）
+var C=[
+ [108,110,110.5,107.5],
+ [110,108.5,110.2,108],
+ [108.5,106.5,108.8,106],
+ [106.5,106.2,107,105.8],
+ [106.2,107.8,108,106],
+ [107.8,106,107.9,105.5],
+ [106,105.3,106,105],
+ [105.3,106.8,107,105.2],
+ [106.8,109,109.5,106.5],
+ [109,112,112.3,108.8]
+];
+function Y(p){return 380-(p-100)*26}
+var bars=document.getElementById("bars");
+var svgns="http://www.w3.org/2000/svg";
+var barEls=[];
+C.forEach(function(k,i){
+ var g=document.createElementNS(svgns,"g");
+ var x=70+i*80, up=k[1]>=k[0], col=up?"#d43a31":"#2fa35a";
+ var wick=document.createElementNS(svgns,"line");
+ wick.setAttribute("x1",x+15);wick.setAttribute("x2",x+15);
+ wick.setAttribute("y1",Y(k[2]));wick.setAttribute("y2",Y(k[3]));
+ wick.setAttribute("stroke",col);wick.setAttribute("stroke-width","2.5");
+ var body=document.createElementNS(svgns,"rect");
+ var yT=Y(Math.max(k[0],k[1])), yB=Y(Math.min(k[0],k[1]));
+ body.setAttribute("x",x);body.setAttribute("y",yT);
+ body.setAttribute("width",30);body.setAttribute("height",Math.max(3,yB-yT));
+ body.setAttribute("fill",col);
+ g.appendChild(wick);g.appendChild(body);
+ g.style.opacity=0;g.style.transition="opacity 0.5s ease";
+ bars.appendChild(g);barEls.push(g);
+});
+var ANN=["h1Flag","h2Flag","abcG","abcT","qBox","sumBox"];
+function el(id){return document.getElementById(id)}
+ANN.forEach(function(id){el(id).style.opacity=0;el(id).style.transition="opacity 0.5s ease"});
+function showBars(n){barEls.forEach(function(g,i){g.style.opacity=i<n?1:0})}
+function showA(id){el(id).style.opacity=1}
+var CAPS=[
+ "背景：一波上涨冲到 110，开始回调（第 1-2 根）。",
+ "回调继续，价格跌到 106 一带（第 3-4 根）。",
+ "第 5 根：一根阳线，高点 108 超过了前一根的高点 107 —— 这叫“高1”，它终结了第一波回调。",
+ "停一下：高1 出现了，回调结束了吗？作者说：不一定——它只终结了“第一波”。先想，再点下一步。",
+ "果然又跌了一波，到 105（第 6-7 根）。",
+ "第 8 根：又一根阳线，高点 107 超过前高 106 —— 这叫“高2”，第二波回调终结。",
+ "对位 ABC：第一波回调=A，高1带来的方向改变=B，第二波回调=C，高2 就是 C 的终点。",
+ "随后价格 105 → 112，趋势恢复。记住：高2 ≈ ABC 终点是大概率，不是保证——这套语言第 2 本书第 17 章会展开成完整的回调计数体系。"
+];
+function applyStep(n){
+ showBars(10);ANN.forEach(function(id){el(id).style.opacity=0});
+ if(n<=0)showBars(2);
+ if(n==1)showBars(4);
+ if(n>=2)showBars(5);
+ if(n==2){showA("h1Flag")}
+ if(n==3){showA("h1Flag");showA("qBox")}
+ if(n==4)showBars(7);
+ if(n>=5)showBars(8);
+ if(n==5){showA("h1Flag");showA("h2Flag")}
+ if(n==6){showA("h1Flag");showA("h2Flag");showA("abcG");showA("abcT")}
+ if(n>=7){showA("h1Flag");showA("h2Flag");showA("abcG");showA("abcT");showA("sumBox")}
+ el("cap").textContent=CAPS[n];
+ el("stepNo").textContent="第 "+(n+1)+" / 8 步（键盘 ← → 也能翻）";
+}
+var step=0,timer=null;
+function next(){if(step<7){step++;applyStep(step)}else{pausePlay()}}
+function prev(){if(step>0){step--;applyStep(step)}}
+function play(){if(timer)return;el("playBtn").textContent="播放中";timer=setInterval(function(){if(step<7){step++;applyStep(step)}else{pausePlay()}},2800)}
+function pausePlay(){if(timer){clearInterval(timer);timer=null}el("playBtn").textContent="播放"}
+function resetAll(){pausePlay();step=0;applyStep(0)}
+document.addEventListener("keydown",function(e){if(e.key==="ArrowRight")next();if(e.key==="ArrowLeft")prev()});
+applyStep(0);
+</script></body></html>
