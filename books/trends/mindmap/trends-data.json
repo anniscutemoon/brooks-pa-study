@@ -114,11 +114,11 @@
           "prereq": "T03",
           "outcome": "说明信号K线与入场K线的区别，并在图上指出一组。",
           "summary": "从“看”到“做”的四类K线术语。",
-          "status": "未学",
+          "status": "学习中",
           "links": {
-            "lesson": null,
-            "animation": null,
-            "exercise": null,
+            "lesson": "../chapters/ch04-signal-entry/lessons/L08-signal-entry.md",
+            "animation": "../chapters/ch04-signal-entry/animations/anim-signal-entry.html",
+            "exercise": "../chapters/ch04-signal-entry/exercises/EX-L08.md",
             "practice": null
           }
         },

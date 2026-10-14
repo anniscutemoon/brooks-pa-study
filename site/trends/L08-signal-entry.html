@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>L08-signal-entry</title>
+<style>
+body{margin:0;background:#1b1d21;color:#d7dae0;font:14.5px/1.75 "PingFang SC","Microsoft YaHei",sans-serif}
+.nav{background:#23262b;border-bottom:1px solid #33373e;padding:10px 22px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.nav a{color:#4fc1ff;text-decoration:none;font-size:13.5px}
+.nav a:hover{text-decoration:underline}
+.nav .pos{color:#8b929e;font-size:13px}
+.wrap{max-width:860px;margin:0 auto;padding:20px 26px 60px}
+h1{font-size:24px;color:#e8eaed;border-bottom:2px solid #4fc1ff;padding-bottom:8px;margin:14px 0}
+h2{font-size:19px;color:#9ecbff;margin:26px 0 8px}
+h3{font-size:16.5px;color:#c4ccd6;margin:20px 0 6px}
+h4{font-size:15px;color:#c4ccd6}
+p{margin:8px 0}
+ul,ol{margin:6px 0;padding-left:24px}
+li{margin:4px 0}
+blockquote{background:#20262e;border-left:3px solid #f59e0b;border-radius:0 6px 6px 0;padding:10px 14px;margin:10px 0;color:#dbe2ea}
+.tb{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px}
+.tb th{background:#262a30;color:#9ecbff;text-align:left;padding:7px 10px;border:1px solid #33373e}
+.tb td{padding:7px 10px;border:1px solid #33373e;color:#c4ccd6}
+.qa{margin:14px 0}
+.qt{color:#9ecbff;font-weight:600;margin-bottom:6px;font-size:14px}
+.qa textarea{width:100%;min-height:110px;background:#1f2226;color:#d7dae0;border:1px solid #3d434c;border-radius:8px;padding:10px;font:14px/1.6 "PingFang SC","Microsoft YaHei",sans-serif;box-sizing:border-box}
+.qa textarea:focus{border-color:#4fc1ff;outline:none}
+.qbtns{display:flex;gap:12px;align-items:center;margin:10px 0}
+.qbtns button{background:#20262e;border:1px solid #4fc1ff;color:#4fc1ff;border-radius:7px;padding:8px 18px;font-size:14px;cursor:pointer}
+.qbtns button:hover{background:#26303a}
+#saved{color:#8b929e;font-size:12.5px}
+.mats{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
+.mats a{display:inline-block;background:#20262e;border:1px solid #4fc1ff;color:#4fc1ff;border-radius:7px;padding:8px 16px;text-decoration:none;font-size:14px}
+.mats a:hover{background:#26303a}
+.foot{margin-top:36px;padding-top:12px;border-top:1px solid #33373e;color:#7c8590;font-size:12.5px}
+.card{display:block;background:#23262b;border:1px solid #33373e;border-left:4px solid #4fc1ff;border-radius:8px;padding:12px 16px;margin:10px 0;text-decoration:none}
+.card:hover{border-color:#4fc1ff}
+.card .t{color:#e8eaed;font-weight:600;font-size:15.5px}
+.card .s{color:#8b929e;font-size:12.5px;margin-top:3px}
+.tag{float:right;font-size:12px;color:#f59e0b}
+</style></head><body>
+<div class="nav"><a href="../index.html">首页</a> <span class="pos">高级趋势技术分析 / ch04-signal-entry</span>  <a href="EX-L08.html">下一页 →</a> <a href="../../books/trends/mindmap/trends-map.html">思维导图</a></div>
+<div class="wrap"><div class="mats"><a href="../../books/trends/chapters/ch04-signal-entry/lessons/L08-slides.html">打开图解/动画：L08-slides</a><a href="../../books/trends/chapters/ch04-signal-entry/animations/anim-signal-entry.html">打开图解/动画：anim-signal-entry</a><a href="../../books/trends/chapters/ch04-signal-entry/exercises/EX-L08-graded-demo.html">打开图解/动画：EX-L08-graded-demo</a><a href="../../books/trends/chapters/ch04-signal-entry/exercises/EX-L08-q1-chart.html">打开图解/动画：EX-L08-q1-chart</a><a href="EX-L08.html">做随堂检查：EX-L08</a></div><h1>L08 · 信号K线、入场K线、建仓形态与K线形态（第 4 章）</h1>
+<h2>定位</h2>
+<ul><li>原书：《高级趋势技术分析》第一篇 价格行为 · 第 4 章（印刷页 81-86 / PDF 第 88-93 页），导图节点 T04。</li><li>类型：原书内容讲解。</li><li>前面七讲都在教你怎么"读"图；这一章开始教你怎么"下单"——从看客变成玩家。之后每一笔示例交易都用这一章的词汇描述，本章是全书交易执行层的词汇表。</li></ul>
+<h2>学习目标（本讲学完你能做到）</h2>
+<ol><li>说出"建仓形态 → 信号K线 → 入场K线 → 延续K线"四角色流水线，并解释为什么信号K线是"事后追认"的。</li><li>在一张图上指出：同一天收盘时还只是候选人的K线，怎样在下一根K线突破后升级为信号K线。</li><li>解释为什么每根K线同时是做多和做空的信号K线（谁挂在它的上方、谁挂在它的下方）。</li><li>复述两条守则：初学者只做顺势且信号K线必须同向；"趋势越强，信号K线外观越不重要；越逆势，强信号K线越重要"。</li><li>说出挂单的标准位置（前一根K线高点上方 1 tick）和"1 单位陷阱"是什么。</li></ol>
+<h2>复习（上一讲 L07 的钩子）</h2>
+<ul><li>急速与通道四幕：急速突破 → 回调 → 通道 → 测试通道底 → 大概率进区间。</li><li>反转的真意：掉头灯亮 ≠ 掉头，大部分反转只是进区间。</li><li>这一章补上缺的那块：<b style="color:#e8eaed">灯亮之后，你的单子到底挂在哪、什么时候算成交</b>。</li></ul>
+<h2>作者观点（原书）</h2>
+<h3>建仓形态与顺势/逆势（PDF 88）</h3>
+<ul><li><b style="color:#e8eaed">建仓形态</b>：由一根或多根K线组成的形态，让交易者相信可以在这里下单并且有较高概率实现盈利。严格说来，图形上每根K线都是一个潜在的建仓形态——下一根K线成为一轮强劲上涨或下跌起点的可能性总是存在的。</li><li><b style="color:#e8eaed">顺势交易</b>：交易方向与市场最近的或占主导的趋势相同；<b style="color:#e8eaed">逆势交易</b>：方向相反。上涨趋势里做多 = 顺势；同一个位置做空 = 逆势。</li></ul>
+<h3>三个身份是"事后追认"的（PDF 88）</h3>
+<ul><li>信号K线往往是<b style="color:#e8eaed">事后标注</b>的：是在这根K线收盘、你的入场单成交之后。一旦入场单被执行，前一根K线就不再只是建仓形态K线，而升级为<b style="color:#e8eaed">信号K线</b>（它给你发出了需要下单的信号）；你成交时所在的那根K线是<b style="color:#e8eaed">入场K线</b>；入场后出现的下一根同方向K线是<b style="color:#e8eaed">延续K线</b>——建仓后出现第二根与你交易方向相同的K线总是一件好事。有时候市场横向运行一两根K线再延续，也不错，只要行情有延续，就有机会获得更大利润。</li></ul>
+<h3>每根K线都是双向信号K线（PDF 88）</h3>
+<ul><li>走势图上任意一根K线：既有多头在其<b style="color:#e8eaed">高点上方挂单买入</b>（赌突破），又有空头在其<b style="color:#e8eaed">高点处挂限价单卖空</b>（赌突破失败）；同时既有多头在其<b style="color:#e8eaed">低点或下方限价买入</b>，又有空头在其<b style="color:#e8eaed">低点下方挂单卖出</b>。</li><li>所以<b style="color:#e8eaed">每根K线都同时是做多和做空交易的信号K线</b>，无论接下来价格突破其高点还是低点，都有多空两边在等待入场。每根K线都可以看成一个<b style="color:#e8eaed">单K线交易区间</b>（回顾 L06：十字星就是单K线交易区间）。</li><li>突破 1 个最小报价单位即可让多头挂单成交；而赌突破失败的空头挂限价单反着做。</li><li><b style="color:#e8eaed">交易认知第一课</b>：无论你对自己的判断如何坚信不疑，总有与你同样聪明的人对相反判断同样坚信不疑——必须有对手方，你的单子才能成交。</li></ul>
+<h3>交易者最重要的技能（PDF 89）</h3>
+<ul><li>判断前一根K线上方或下方<b style="color:#e8eaed">何时买家更多、何时卖家更多</b>。在恰当背景下出现的信号K线就属于这种非均衡时刻。</li><li>例：多头趋势回调中出现一根多头信号K线 → 可判断这根K线上方买家多于卖家，买入比卖出更合理。</li><li>先机通常很小（总有聪明人持相反观点）；<b style="color:#e8eaed">交易者的优势 = 解读价格行为的能力</b>，这种能力越强，先机越大。</li></ul>
+<h3>常见信号K线与建仓形态清单（PDF 89-90，第 5、6 章逐一展开）</h3>
+<ul><li><b style="color:#e8eaed">趋势持续信号</b>（急速行情阶段，可在上升趋势顶部买入、下跌趋势底部卖出）：急速拉升中的强多头趋势K线；急速下挫中的强空头趋势K线。</li><li><b style="color:#e8eaed">反转信号</b>（反转趋势，或只是回调结束回到趋势方向）：</li><li>反转K线（第 5 章主角）；双K线反转、三K线反转（第 5 章）</li><li>小K线、内包K线、双内包（ii）、三内包（iii）形态（第 6 章主角）</li><li>在一根长K线或交易区间高点/低点附近出现的小K线</li><li>内外内（ioi）形态、外包K线、双外包（oo）形态</li><li>双顶和双底（第 2 本书主角）</li><li>失败的反转尝试（包括反转K线失败）</li><li>失败的延续尝试：如下跌行情有见底迹象时在<b style="color:#e8eaed">低1信号K线下方买入</b>（赌"跌破低1"失败）；上升行情见顶迹象时在<b style="color:#e8eaed">高1信号K线上方卖空</b></li><li>光K线：没有上下影线的K线</li><li>趋势K线本身可以反向当信号：强下跌趋势的反弹中/区间顶部附近，一根<b style="color:#e8eaed">多头</b>趋势K线可以是卖出形态；强上升趋势的回调中/区间底部附近，一根<b style="color:#e8eaed">空头</b>趋势K线可以是买入形态</li><li>通道中的所有K线：在前一根低点或下方买入、前一根高点或上方卖出（第 15 章）</li><li>任何在上升趋势中构成<b style="color:#e8eaed">低点抬升</b>、下跌趋势中构成<b style="color:#e8eaed">高点下降</b>的K线（第 12 章）</li></ul>
+<h3>初学者守则（PDF 90）</h3>
+<ul><li><b style="color:#e8eaed">初学者只做顺势交易</b>，且只有当<b style="color:#e8eaed">信号K线同时也是交易方向的趋势K线</b>时才入场：做空限定在"信号K线是下跌趋势中的空头趋势K线"；做多限定在"信号K线为阳线、市场处于上升趋势"。市场已表现出卖压（或买压），行情延续的概率更大。</li><li>做趋势反转比做趋势回撤和交易区间交易<b style="color:#e8eaed">需要更强的信号K线</b>——因为大部分逆势交易都会失败。</li><li><b style="color:#e8eaed">超强趋势的信号K线往往非常难看，但依然是很棒的交易</b>。如果一个建仓形态过于明显，市场会迅速做出纠正（修复过程迅速而安静，刮头皮交易的特征即如此）。</li><li>相比之下，摆动交易建仓形态往往只有 <b style="color:#e8eaed">50% 或更低</b> 的成功率（第 2 本书细讲）。</li><li>强劲趋势会把交易者拒之门外、不给上车机会，迫使他们追涨杀跌。</li><li>交易区间的顶部，反转建仓形态的二次入场信号K线往往是<b style="color:#e8eaed">阳线</b>；底部买入建仓形态的信号K线往往是<b style="color:#e8eaed">阴线</b>。</li><li>逆势交易的最低门槛：等价格<b style="color:#e8eaed">强势突破趋势线之后回踩</b>，且只有出现<b style="color:#e8eaed">强势反转K线</b>时才做——大部分成功的反转交易都从一根强信号K线开始。趋势线突破后的回踩甚至可能创出新的极端价（上升趋势末端高点抬升/下跌趋势末端低点下降）。</li><li>趋势持续的时间往往大大超过大部分交易者的预判——大部分逆势交易最终只是造成趋势中的又一次回调、又一个顺势入场点。</li></ul>
+<h3>一条定律（PDF 91）</h3>
+<ul><li><b style="color:#e8eaed">趋势越强，信号K线的外观越不重要；交易越是逆势，入场时出现强信号K线就越重要。</b></li><li>顺势交易者往往急切入场而不等强信号K线：强趋势中小幅回调至均线（同时测试前期摆动低点、趋势线或斐波那契回撤位）时就买——结果就是强趋势中大部分成功的信号K线都不好看，只有极少数是朝趋势方向的趋势K线。</li></ul>
+<h3>挂单方法与"1 单位陷阱"（PDF 91）</h3>
+<ul><li>通常入场的最佳策略：在<b style="color:#e8eaed">前一根K线高点上方 1 个最小报价单位挂买单</b>，或<b style="color:#e8eaed">低点下方 1 个单位挂卖单</b>；挂单没成交就取消，寻找新位置。</li><li>股票：挂单最好放在潜在信号K线高点上方/低点下方<b style="color:#e8eaed">数个单位</b>处——因为"<b style="color:#e8eaed">1 单位陷阱</b>"很普遍：市场仅突破前一根K线高点或低点 1 个单位然后反转，把刚在那里挂单入场的交易者全部套住。</li><li>一根K线可以同时是两个方向的建仓形态：在其上方和下方同时挂买单和卖单，哪个方向突破就做哪个。</li></ul>
+<h3>蜡烛图去魅（PDF 91-92）</h3>
+<ul><li>蜡烛图书籍汗牛充栋，起源于古代日本；只有新手才寻找"神奇力量"。<b style="color:#e8eaed">唯一重要的问题：市场处于趋势之中还是交易区间</b>。</li><li>单根K线的分析要点依然是<b style="color:#e8eaed">它是否具有趋势</b>：一方有控制权 → 实体 → 趋势K线；势均力敌 → 实体很小甚至没有 → 十字星（L06 已学）。</li><li>绝大部分K线形态大多数时候不管用（没有可靠的预测能力）。五花八门的K线叫法只会把交易搞复杂，让你不把注意力集中在市场趋势上。<b style="color:#e8eaed">你是靠下单赚钱，不是靠起名字赚钱。</b></li></ul>
+<h3>信号K线"长残"的风险（PDF 92）</h3>
+<ul><li>经常出现：5 分钟图上一根信号K线在形成的第 3 分钟样子很好（比如突破末端熊旗的多头反转K线），但收盘前 5-10 秒价格突然上蹪 4 个以上最小报价单位——收盘时它依然不错，但高点已接近熊旗高点。此时在其上方买入 = 可能买在熊旗高点。你只有几秒钟决定。</li><li><b style="color:#e8eaed">除非已能稳定盈利和快速解读市场，最好放过这样的交易，等二次入场机会。</b>（确信有很多被套空头时例外。）</li><li>任何时候，连续多根重叠度很高的长K线出现，风险都非常大。</li></ul>
+<h3>高潮的精确定义（PDF 92，对 L06 的升级）</h3>
+<ul><li>所有反转都包含高潮；<b style="color:#e8eaed">所有趋势K线都是一次高潮或高潮的一部分；高潮在第一根停止K线结束</b>。</li><li>例：连续 3 根多头趋势K线后，下一根是带长上影线的小多头趋势K线、内包K线、十字星或空头趋势K线 → 高潮止于那 3 根。</li></ul>
+<h3>图 4.1 案例（PDF 92-93，Visa 15 分钟图）</h3>
+<ul><li>价格先突破一根下降趋势线，然后进入一波两段式下跌，跌破前一天低点创出低点下降（L04 数K线复习）。第一波回调由截止到K线2的一组三内包（iii）完成。</li><li><b style="color:#e8eaed">K线3 是一根强多头反转K线</b>，同时反转了前一天的低点和下降趋势线的测试 → 做多形态。在其上方 1 个最小报价单位挂单买入成交 → <b style="color:#e8eaed">K线3 升级为信号K线</b>，它后面那根就是<b style="color:#e8eaed">入场K线</b>，入场后下一根较强的多头趋势K线属于<b style="color:#e8eaed">延续K线</b>。因为这是逆势交易（此时下跌还未确认结束），作者强调需要 K线3 这样的强势反转K线才值得买。</li><li>K线4 是双内包（ii）建仓形态的入场K线（抓第二波上涨）；K线5 是"内包K线突破回踩"建仓形态的入场K线（两根停止K线的实体均为内包，实质与双内包相同）。</li></ul>
+<h2>教学解释（我的，不是作者的）</h2>
+<ul><li><b style="color:#e8eaed">四角色流水线类比（土豆市场）</b>：你是批发市场的土豆贩子。摊位 = 每根K线。你盯上一个今天收摊收得漂亮的摊位（K线收成多头反转样）——此刻它只是<b style="color:#e8eaed">候选人</b>。你跟市场管理员留话："土豆涨过这个摊今天的最高价 1 分钱，我就买一筐"（= 高点上方 1 tick 挂 stop 买单）。第二天真涨过去了，你的单成交——那个摊位被追认<b style="color:#e8eaed">信号K线</b>（它是给你发令的摊），你成交时的报价就是<b style="color:#e8eaed">入场K线</b>，之后价格接着涨就是<b style="color:#e8eaed">延续K线</b>（订单验证成功）。</li><li><b style="color:#e8eaed">为什么是"事后追认"</b>：裁判不吹哨之前，没有人知道哪次犯规会被判。K线收盘、你的单成交之前，它只是众多候选人之一；成交这个动作才把它"转正"。所以同一根K线在不同人的账本上身份不同：你做多成交了，它对你的账本是信号K线；隔壁老王赌突破失败在它高点挂了空单，它对老王也是（做空的）信号K线。</li><li><b style="color:#e8eaed">双向性类比</b>：每个摊位门口都站着两排人——一排赌"涨过摊位顶就买"（突破派），一排赌"涨到摊位顶就卖给你"（回落派）。哪排人对，明天开盘见分晓。你不需要知道谁对，你只需要想清楚自己站在哪排、输了赔多少。</li><li><b style="color:#e8eaed">定律类比</b>：抢手早市的摊位不用看招牌——排队的长龙本身就是信号（强趋势里信号K线难看也行）；冷清市场的摊必须亮出最好的货、喊最响的价（逆势交易必须等强信号K线）。</li><li><b style="color:#e8eaed">1 单位陷阱类比</b>：商场开门前一分钟排在最前面的人。门开条缝、只放进队头那一个、门就关了——价格刚好越过挂单价 1 tick 就掉头。排在队头的就是你。所以股票里作者让你把挂单放远几个单位，宁可贵一点，也要确认"门真开了"。</li></ul>
+<h2>本讲术语</h2>
+<ul><li><b style="color:#e8eaed">建仓形态（setup）</b>：让你相信可以下单且有较高概率盈利的一根或多根K线。</li><li><b style="color:#e8eaed">信号K线（signal bar）</b>：你的入场单成交后，被追认"发出信号"的前一根K线。</li><li><b style="color:#e8eaed">入场K线（entry bar）</b>：你的挂单成交时所在的那根K线。</li><li><b style="color:#e8eaed">延续K线（follow-through bar）</b>：入场后与你同方向的下一根K线。</li><li><b style="color:#e8eaed">最小报价单位（tick）</b>：合约价格的最小跳动单位。</li><li><b style="color:#e8eaed">1 单位陷阱（one-tick trap）</b>：只突破前一根K线高点/低点 1 tick 就反转的假突破。</li><li><b style="color:#e8eaed">二次入场（second entry）</b>：第一次入场机会错过或失败后，市场再次给的同向机会。</li></ul>
+<h2>零基础补课【补充】原书提前使用的概念（本章清单里出现、第 5、6 章才正式讲）</h2>
+<ul><li><b style="color:#e8eaed">最小报价单位（tick）与你的三个合约</b>：GC 黄金 tick=0.1 点 = $10；ES 标普 tick=0.25 点 = $12.5；NQ 纳指 tick=0.25 点 = $5。挂单里的"高点上方 1 tick"，ES 里就是高点 +0.25 点。</li><li><b style="color:#e8eaed">挂单（stop buy / stop sell，触发单）</b>：价格<b style="color:#e8eaed">到达</b>你指定的触发价时自动市价成交——追突破用它。"涨到 4614.25 我就买"。<b style="color:#e8eaed">限价单（limit）</b>：只在指定价或更优价成交——赌回落用它。"跌回 4600 我才买"。回顾 L02：机构挂单都看得见，这就是它们的排队线。</li><li><b style="color:#e8eaed">内包K线（inside bar）</b>：这根的高低点完全躲在前一根的高低点范围之内（小孩躲在妈妈身后）。<b style="color:#e8eaed">外包K线（outside bar）</b>：高低点把前一根整个罩住（大锅扣小锅）。<b style="color:#e8eaed">双内包（ii）</b>＝内包之后又一根更小的内包；<b style="color:#e8eaed">三内包（iii）</b>＝再来一根。<b style="color:#e8eaed">内外内（ioi）</b>、<b style="color:#e8eaed">双外包（oo）</b>＝它们的组合。正式展开在第 5、6 章，本章认脸即可。</li><li><b style="color:#e8eaed">光K线</b>：没有上下影线的K线——开盘就是最低（或最高），收盘就是另一头，全程一方压着打。</li><li><b style="color:#e8eaed">二次入场</b>：第一次机会你没上车（或上车失败），市场晃一圈再给你一次同样的上车位——强趋势里非常常见。EX-L06 里"高潮后等二次入场"就是它。</li></ul>
+<h2>图解</h2>
+<ul><li><code style="background:#2c3138;padding:1px 6px;border-radius:4px;color:#7dd3fc">../animations/anim-signal-entry.html</code>（自编示意：四角色流水线 8 步动画，含预测停顿）。</li></ul>
+<h2>随堂检查</h2>
+<p>见 <code style="background:#2c3138;padding:1px 6px;border-radius:4px;color:#7dd3fc">../exercises/EX-L08.md</code>（配图版：<code style="background:#2c3138;padding:1px 6px;border-radius:4px;color:#7dd3fc">EX-L08-q1-chart.html</code>）。</p>
+<h2>学习记录</h2>
+<ul><li>2026-10-14：讲解完成，待作答 EX-L08。</li></ul><div class="foot">本页由仓库内容生成 · 原书引用以 PDF 页锚点为准 · 学习笔记非原书内容</div></div>
+</body></html>

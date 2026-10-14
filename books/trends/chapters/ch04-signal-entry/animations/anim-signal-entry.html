@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>动画 · 信号K线与入场K线：四角色流水线</title>
+<style>
+body{margin:0;background:#1b1d21;color:#d7dae0;font:14px/1.7 "PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:18px 22px 50px}
+h1{font-size:20px;color:#e8eaed;border-bottom:2px solid #4fc1ff;padding-bottom:8px}
+.src{color:#7c8590;font-size:12.5px;margin-bottom:10px}
+.chartbox{background:#23262b;border:1px solid #33373e;border-radius:10px;padding:10px}
+.explain{background:#20262e;border-left:3px solid #4fc1ff;border-radius:0 6px 6px 0;padding:12px 16px;margin-top:12px;min-height:64px;color:#dbe2ea}
+.explain b{color:#fbbf24}
+.ctrl{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.ctrl button{background:#20262e;border:1px solid #4fc1ff;color:#4fc1ff;border-radius:7px;padding:7px 16px;font-size:14px;cursor:pointer}
+.ctrl button:hover{background:#26303a}
+.ctrl button:disabled{opacity:.4;cursor:default}
+.stepno{color:#8b929e;font-size:13px}
+.pred{margin-top:10px;background:#1f2226;border:1px solid #3d434c;border-radius:8px;padding:10px 14px}
+.pred .pq{color:#9ecbff;font-weight:600;margin-bottom:8px}
+.pred button{margin:4px 8px 0 0;background:#2a2f36;border:1px solid #f59e0b;color:#fbbf24;border-radius:6px;padding:5px 14px;font-size:13.5px;cursor:pointer}
+.pred .answered{color:#5ecb8a;margin-top:6px}
+.note{margin-top:14px;color:#7c8590;font-size:12.5px}
+</style></head><body><div class="wrap">
+<h1>四角色流水线：建仓形态 → 信号K线 → 入场K线 → 延续K线</h1>
+<div class="src">来源：自编示意动画（虚构 ES 5 分钟数据，非原书图表） ｜ 概念依据：《高级趋势技术分析》第 4 章（印刷页 81-86 / PDF 88-93） ｜ 图 4.1 原案例为 Visa 15 分钟图</div>
+
+<div class="chartbox">
+<svg id="chart" width="880" height="370" viewBox="0 0 880 370">
+<g id="grid"></g><g id="bars"></g><g id="marks"></g>
+</svg>
+</div>
+
+<div class="explain" id="exp">点「下一步」开始。</div>
+<div class="pred" id="pred" style="display:none">
+<div class="pq" id="pq"></div>
+<div id="pbtns"></div>
+<div class="answered" id="pans" style="display:none"></div>
+</div>
+
+<div class="ctrl">
+<button onclick="reset()">重置</button>
+<button onclick="prev()">上一步</button>
+<button id="playbtn" onclick="togglePlay()">播放</button>
+<button id="nextbtn" onclick="next()">下一步</button>
+<span class="stepno" id="stepno">第 0 / 8 步</span>
+</div>
+
+<div class="note">红=涨（阳线），绿=跌（阴线） ｜ 价格轴为虚构 ES 点数 ｜ 每步解释见下方蓝条；到预测步会停下来等她猜。</div>
+
+<script>
+var SVGNS="http://www.w3.org/2000/svg";
+var P0=4585, SCALE=3.2, BASE=330;
+function y(p){return BASE-(p-P0)*SCALE}
+function el(tag,attrs,parent){var e=document.createElementNS(SVGNS,tag);for(var k in attrs){e.setAttribute(k,attrs[k])}parent.appendChild(e);return e}
+function txt(x,s,fill,size,anchor,parent){var t=el("text",{x:x,y:s[1],fill:fill,"font-size":size||12,"text-anchor":anchor||"middle"},parent||document.getElementById("marks"));t.textContent=s[0];return t}
+
+// K线数据：[open, high, low, close]
+var K=[
+ [4640,4643,4614,4617],
+ [4617,4619,4600,4603],
+ [4603,4605,4590,4599],
+ [4596,4613,4592,4611],
+ [4612,4635,4609,4631],
+ [4631,4650,4628,4647],
+ [4647,4649,4632,4636],
+ [4636,4665,4634,4662]
+];
+var X=[100,200,300,400,500,600,700,800], BW=30;
+var STOPBUY=4613.25, STOPLOSS=4609.75, SELLSTOP=4591.75;
+var grid=document.getElementById("grid"),bars=document.getElementById("bars"),marks=document.getElementById("marks");
+
+// 网格与价格轴
+for(var p=4590;p<=4670;p+=10){
+ el("line",{x1:70,y1:y(p),x2:850,y2:y(p),stroke:"#2b2f36","stroke-width":1},grid);
+ txt(58,[p.toFixed(0),y(p)+4],"#7c8590",11,"end",grid);
+}
+
+// 画一根K线（红涨绿跌）
+function drawBar(i){
+ var k=K[i],x=X[i],bull=k[3]>=k[0];
+ var col=bull?"#d43a31":"#2fa35a";
+ var g=el("g",{opacity:0,id:"bar"+i},bars);
+ el("line",{x1:x,y1:y(k[1]),x2:x,y2:y(k[2]),stroke:col,"stroke-width":2},g);
+ var top=y(Math.max(k[0],k[3])),h=Math.abs(y(k[0])-y(k[3]));
+ el("rect",{x:x-BW/2,y:top,width:BW,height:Math.max(h,2),fill:col},g);
+ txt(x,["K"+(i+1),y(Math.max(k[0],k[3],k[1]))-10],"#8b929e",11,"middle",g);
+ return g;
+}
+for(var i=0;i<K.length;i++){drawBar(i)}
+
+function badge(x,y,lines,color){ // 徽章：多行文本的圆角矩形
+ var g=el("g",{opacity:0},marks);
+ var w=0;for(var j=0;j<lines.length;j++){w=Math.max(w,lines[j].length*13+20)}
+ var h=lines.length*17+10;
+ var r=el("rect",{x:x-w/2,y:y-h,width:w,height:h,rx:6,fill:"#1f2226",stroke:color,"stroke-width":1.5},g);
+ for(var j=0;j<lines.length;j++){var t=txt(x,[lines[j],y-h+17*(j+1)],color,12,"middle",g)}
+ return g;
+}
+var B={ // 各步骤的徽章与标线（惰性创建）
+ cand:null,stopline:null,trigger:null,sig:null,entry:null,ft:null,losline:null,sellline:null,sum:null
+};
+function line(price,color,label,dx){
+ var g=el("g",{opacity:0},marks);
+ el("line",{x1:70,y1:y(price),x2:850,y2:y(price),stroke:color,"stroke-dasharray":"6 5","stroke-width":1.6},g);
+ var t=txt((dx||860),[label,y(price)-6],color,11.5,"end",g);
+ return g;
+}
+
+B.cand=badge(X[3],y(K[3][1])-34,["建仓形态K线","（候选人·还没上岗）"],"#5ecb8a");
+B.stopline=line(STOPBUY,"#f59e0b","你的挂单买入 4613.25 = K4高点+1tick",850);
+B.trigger=line(4613.25,"#fbbf24","",0);B.trigger.setAttribute("opacity",0);
+B.sig=badge(X[3],y(K[3][1])-34,["信号K线","（追认·给你发令）"],"#4fc1ff");
+B.entry=badge(X[4],y(K[4][1])+30,["入场K线","（你的单在这根成交）"],"#fbbf24");
+B.losline=line(STOPLOSS,"#d43a31","你的止损 4609.75 = 入场K线低点-1tick",850);
+B.ft=badge(X[5],y(K[5][1])-34,["延续K线","（订单验证成功）"],"#5ecb8a");
+B.sellline=line(SELLSTOP,"#a78bfa","空头那排的挂单卖出 4591.75 = K4低点-1tick",850);
+B.sum=badge(470,120,["四角色流水线","建仓形态→信号K线→入场K线→延续K线","信号K线是成交后追认的，不是提前指定的"],"#fbbf24");
+
+var STEPS=[
+ {bars:3,show:[],exp:"<b>背景：急速下跌。</b> K1-K3 三连阴，K3 下影线变长、收盘远离最低点——见底迹象（L06 买压判读复习）。此刻还没有任何 K 线有身份，都只是普通K线。"},
+ {bars:4,show:["cand"],exp:"<b>K4 收盘：一根多头反转K线。</b> 长下影+实体收在前一根开盘之上。此刻它只是<b>建仓形态K线</b>——候选人。它长得顺眼，但「发令枪」还没响：没人知道下一根会不会涨过它。"},
+ {bars:4,show:["cand","stopline"],pred:"你的挂单已经挂上：K4 高点 4613 之上 1 tick = 4613.25（涨过它我就买）。下一根K线有两种典型走法，你猜是哪种？",exp:"<b>你下挂单（stop buy）。</b> 规则来自作者：入场的标准做法＝前一根K线<b>高点上方 1 个最小报价单位</b>挂买单（ES 的 1 tick=0.25点=$12.5）。没成交就撤单换位置。现在等下一根K线来「触发」它。"},
+ {bars:5,show:["sig","entry","losline"],flash:true,exp:"<b>K5 涨过 4613.25 → 你的挂单成交！</b> 从这一刻起，K4 被<b>事后追认</b>为<b>信号K线</b>（它是给你发令的那根），K5 成为<b>入场K线</b>（你的单在这根成交）。同时把<b>止损</b>挂在入场K线低点下方 1 tick（4609.75）——单子成交的那一刻，出场计划必须已经在。"},
+ {bars:6,show:["sig","entry","losline","ft"],exp:"<b>K6 出现：延续K线。</b> 入场后与你同方向的下一根K线——订单验证成功。作者说这是「总是一件好事」；横一两根再延续也不错，只要行情有延续，就有机会拿更大利润。"},
+ {bars:6,show:["sig","entry","losline","ft","sellline"],exp:"<b>同一根K线，两边都在排队。</b> 你做多，你的信号K线是K4；但空头在 K4 <b>低点</b>下方 1 tick（4591.75）也挂着卖单，赌它跌破——K4 对他们同样是「潜在信号K线」。每根K线都同时是做多和做空的信号K线（每根K线都是单K线交易区间）。必有对手方，你的单才能成交。"},
+ {bars:7,show:["sig","entry","losline","ft"],exp:"<b>K7 回调：市场在测试你的入场区。</b> 小阴线压回来，接近入场K线高点、逼近止损线上方——没有跌破。作者：市场通常会出现<b>回调测试入场K线</b>的情况，甚至精确到 1 tick。测试守住=你的头寸多了一层证据。"},
+ {bars:8,show:["sig","entry","losline","ft","sum"],exp:"<b>K8 再涨，收尾。总结四角色：</b>建仓形态（候选人）→ 信号K线（成交后追认的发令者）→ 入场K线（成交所在）→ 延续K线（验证）。<b>注意：本例是逆势抄底（下跌中做多），作者要求初学者只做顺势且信号K线须同向趋势K线；逆势必须等强反转K线（原书图4.1的K线3那种强度）。</b>"}
+];
+var cur=-1,playing=null;
+
+function apply(){
+ for(var j=0;j<K.length;j++){
+  var g=document.getElementById("bar"+j);
+  g.setAttribute("opacity",j<(cur>=0?STEPS[cur].bars:0)?1:0);
+ }
+ ["cand","stopline","trigger","sig","entry","ft","losline","sellline","sum"].forEach(function(k){
+  if(B[k])B[k].setAttribute("opacity",0);
+ });
+ if(cur>=0){
+  STEPS[cur].show.forEach(function(k){if(B[k])B[k].setAttribute("opacity",1)});
+  document.getElementById("exp").innerHTML=STEPS[cur].exp;
+ }
+ document.getElementById("stepno").textContent="第 "+(cur+1)+" / "+STEPS.length+" 步";
+ var p=document.getElementById("pred");
+ if(cur>=0&&STEPS[cur].pred){p.style.display="block";document.getElementById("pq").textContent=STEPS[cur].pred;buildPred();document.getElementById("pans").style.display="none"}
+ else{p.style.display="none"}
+ document.getElementById("nextbtn").disabled=(cur>=STEPS.length-1);
+ if(cur>=STEPS.length-1){stopPlay()}
+ if(cur>=0&&STEPS[cur].flash){
+  B.trigger.setAttribute("opacity",0);
+  el("circle",{cx:620,cy:y(4613.25),r:14,fill:"none",stroke:"#fbbf24","stroke-width":2.5,id:"flashc"},marks);
+  setTimeout(function(){var f=document.getElementById("flashc");if(f)f.remove()},900);
+ }
+}
+function buildPred(){
+ var b=document.getElementById("pbtns");b.innerHTML="";
+ [["A","涨过 4613.25 就继续走，突破成功"],["B","只涨到 4613.25 一格就掉头（1单位陷阱）"]].forEach(function(o){
+  var bt=document.createElement("button");bt.textContent=o[0]+"："+o[1];
+  bt.onclick=function(){
+   document.getElementById("pans").style.display="block";
+   document.getElementById("pans").textContent="已记录你的预测："+o[0]+"。点「下一步」看结果。";
+  };b.appendChild(bt);
+ });
+}
+function next(){if(cur<STEPS.length-1){cur++;apply()}}
+function prev(){if(cur>0){cur--;apply()}else if(cur===0){cur=-1;apply()}}
+function reset(){cur=-1;apply();stopPlay()}
+function stopPlay(){if(playing){clearInterval(playing);playing=null;document.getElementById("playbtn").textContent="播放"}}
+function togglePlay(){
+ if(playing){stopPlay();return}
+ document.getElementById("playbtn").textContent="暂停";
+ playing=setInterval(function(){
+  if(cur>=STEPS.length-1){stopPlay();return}
+  if(cur>=0&&STEPS[cur+1]&&STEPS[cur+1].pred){stopPlay();next();return}
+  next();
+ },4200);
+}
+apply();
+</script>
+</div></body></html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>EX-L08 配图 · 四角色指认 &amp; 1单位陷阱</title>
+<style>
+body{margin:0;background:#1b1d21;color:#d7dae0;font:14px/1.7 "PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:18px 22px 50px}
+h1{font-size:20px;color:#e8eaed;border-bottom:2px solid #4fc1ff;padding-bottom:8px}
+h2{font-size:16px;color:#9ecbff;margin:22px 0 6px}
+.src{color:#7c8590;font-size:12.5px;margin-bottom:8px}
+.box{background:#23262b;border:1px solid #33373e;border-radius:10px;padding:10px;margin-top:8px}
+.q{background:#20262e;border-left:3px solid #f59e0b;border-radius:0 6px 6px 0;padding:10px 14px;margin:10px 0;color:#dbe2ea}
+.note{color:#7c8590;font-size:12.5px;margin-top:6px}
+</style></head><body><div class="wrap">
+<h1>EX-L08 配图版</h1>
+<div class="src">来源：自编示意（虚构 ES 5 分钟数据，非原书图表）｜ 红涨=阳线，绿跌=阴线 ｜ 本页只给题面信息，不含答案</div>
+
+<h2>图一 · 第 1 题：四角色指认</h2>
+<div class="box">
+<svg width="880" height="330" viewBox="0 0 880 330">
+<g id="g1"></g>
+</svg>
+</div>
+<div class="q">背景：ES 上升趋势中一次回调。你决定<b>顺势做多</b>：在 K 线 E 高点上方 1 tick 挂了买单（橙色虚线 = 你的挂单价）。之后 K 线 F 涨过这条线，你的单成交，你把止损放在成交后的合理位置（红色虚线）。<br>
+问：① 哪根是信号K线？② 哪根是入场K线？③ 哪根是延续K线？④ 在成交之前，K 线 E 叫什么？</div>
+
+<h2>图二 · 第 2 题参考：1 单位陷阱长什么样</h2>
+<div class="box">
+<svg width="880" height="300" viewBox="0 0 880 300">
+<g id="g2"></g>
+</svg>
+</div>
+<div class="q">对照图二想一想：买单挂在"前一根K线高点上方 1 tick"的人，他们的单在什么价位成交？成交之后发生了什么？如果你把挂单放远"数个单位"，这次还会成交吗——这算好事还是坏事？</div>
+
+<div class="note">两图均为教学示意，数据虚构；K线字母仅为本题编号。答题写进 EX-L08.md 的作答区或直接发对话。</div>
+
+<script>
+var NS="http://www.w3.org/2000/svg";
+function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
+function txt(x,y,s,fill,size,anchor,p){var t=el("text",{x:x,y:y,fill:fill,"font-size":size||12,"text-anchor":anchor||"middle"},p);t.textContent=s;return t}
+function chart(gid, K, X, BW, P0, BASE, SC, lines, labels){
+ var g=document.getElementById(gid);
+ for(var p=Math.ceil((P0+1)/10)*10; p<=P0+(BASE-40)/SC; p+=10){
+  el("line",{x1:70,y1:BASE-(p-P0)*SC,x2:850,y2:BASE-(p-P0)*SC,stroke:"#2b2f36"},g);
+  txt(58,BASE-(p-P0)*SC+4,p.toFixed(0),"#7c8590",11,"end",g);
+ }
+ for(var i=0;i<K.length;i++){
+  var k=K[i],x=X[i],bull=k[3]>=k[0],col=bull?"#d43a31":"#2fa35a";
+  el("line",{x1:x,y1:BASE-(k[1]-P0)*SC,x2:x,y2:BASE-(k[2]-P0)*SC,stroke:col,"stroke-width":2},g);
+  var top=BASE-(Math.max(k[0],k[3])-P0)*SC,h=Math.abs((k[0]-k[3])*SC);
+  el("rect",{x:x-BW/2,y:top,width:BW,height:Math.max(h,2),fill:col},g);
+  txt(x,BASE-(Math.max(k[0],k[3],k[1])-P0)*SC-10,labels[i],"#c4ccd6",12.5,"middle",g);
+ }
+ lines.forEach(function(L){
+  var yy=BASE-(L.price-P0)*SC;
+  el("line",{x1:70,y1:yy,x2:850,y2:yy,stroke:L.color,"stroke-dasharray":"6 5","stroke-width":1.6},g);
+  txt(860,yy-6,L.label,L.color,11.5,"end",g);
+ });
+}
+// 图一：上升趋势回调 → 顺势做多。A-G 七根
+chart("g1",
+ [[4600,4622,4598,4620],[4620,4632,4618,4630],[4630,4633,4618,4622],[4622,4624,4608,4612],[4612,4626,4610,4624],[4625,4642,4623,4638],[4638,4654,4636,4650]],
+ [110,215,320,425,530,635,740],30, 4595,290,4,
+ [{price:4626.25,color:"#f59e0b",label:"你的挂单买入 4626.25（E高点+1tick）"},
+  {price:4622.75,color:"#d43a31",label:"你的止损 4622.75"}],
+ ["A","B","C","D","E","F","G"]);
+// 图二：1单位陷阱
+chart("g2",
+ [[4588,4590,4570,4574],[4574,4582,4572,4580],[4580,4582.5,4562,4566],[4566,4568,4550,4553]],
+ [200,360,520,680],30, 4545,262,4.2,
+ [{price:4582.25,color:"#f59e0b",label:"挂在 1 tick 外的人的单 4582.25"}],
+ ["前一根","E","F（只高1tick就掉头）","G"]);
+var g2=document.getElementById("g2");
+el("circle",{cx:520,cy:262-(4582.25-4545)*4.2,r:16,fill:"none",stroke:"#fbbf24","stroke-width":2.5},g2);
+</script>
+</div></body></html>
