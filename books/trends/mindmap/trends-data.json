@@ -95,11 +95,11 @@
           "prereq": "T02",
           "outcome": "在新图表上分别指认突破、区间、测试、反转各一个实例。",
           "summary": "四个最基本的市场动作的定义与互相关系。",
-          "status": "未学",
+          "status": "学习中",
           "links": {
-            "lesson": null,
-            "animation": null,
-            "exercise": null,
+            "lesson": "../chapters/ch03-breakout-test/lessons/L07-breakout-test.md",
+            "animation": "../chapters/ch03-breakout-test/lessons/L07-spike-channel.html",
+            "exercise": "../chapters/ch03-breakout-test/exercises/EX-L07.md",
             "practice": null
           }
         },
